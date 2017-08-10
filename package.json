@@ -23,7 +23,6 @@
     "expo": "^19.0.0",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.46.1",
-    "react-native-code-push": "^5.0.0-beta",
     "react-native-fetch-blob": "^0.10.8",
     "react-native-keyboard-aware-scroll-view": "^0.3.0",
     "react-native-loading-spinner-overlay": "^0.5.1",

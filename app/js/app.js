@@ -4,8 +4,6 @@ import {
   Alert,
 } from 'react-native';
 
-import codePush from "react-native-code-push";
-
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -21,7 +19,7 @@ const store = createStoreWithMiddleware(reducer);
 
 import Login from './auth/containers/login';
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
 
@@ -73,5 +71,3 @@ class App extends Component {
     );
   }
 }
-
-export default codePush(App);
