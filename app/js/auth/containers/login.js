@@ -1,0 +1,364 @@
+'use strict';
+
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Dimensions,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  Keyboard,
+  findNodeHandle,  
+} from 'react-native';
+
+import { bindActionCreators } from 'redux';
+import * as loginActions from '../actions';
+import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
+
+import Spinner from 'react-native-loading-spinner-overlay';
+import timer from 'react-native-timer';
+import * as commonColors from '../../styles/commonColors';
+import { screenWidth, screenHiehgt } from '../../styles/commonStyles';
+import bendService from '../../bend/bendService'
+
+const background = require('../../../assets/imgs/background_profile.png');
+const panel = require('../../../assets/imgs/panel.png');
+const logo = require('../../../assets/imgs/logo.png');
+const eye = require('../../../assets/imgs/eye.png');
+
+class Login extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      password: '',
+      bShowConfirmPassword: true,
+      loggingIn: false,
+    };
+  }
+
+  onLogin() {
+
+    Keyboard.dismiss();
+
+    if (this.state.email == '') {
+      Alert.alert('Please enter your email address.');
+      return;
+    }
+
+    if (this.state.password == '') {
+      Alert.alert('Please enter your password.');
+      return;
+    }
+
+    this.setState({ loggingIn: true });
+
+    bendService.login(this.state.email, this.state.password, (error, user)=>{
+      
+      this.setState({ loggingIn: false });
+
+      if (error || !user.enabled) {
+
+        this.setState({
+          password: '',
+        });
+
+        timer.setTimeout( this, 'LoginFailed', () => {
+          timer.clearInterval(this, 'LoginFailed');
+          Alert.alert("Invalid credentials. Please check your email and password and try again.")
+        }, 200);
+
+        return
+      }
+
+      if (!error) {
+        //check community code
+        if (!user.name) {
+          Actions.SetupProfile();
+        } else {
+          Actions.Main();
+        }
+      }
+    })
+  }
+
+  onGLogin() {
+    alert("onGLogin");
+  }
+
+  onFBLogin() {
+    alert("onFBLogin");
+  }
+
+  onForgotPassword() {
+    alert("onForgotPassword");
+  }
+
+  onRememberMe() {
+    alert("onRememberMe");
+  }
+
+  onCreateAccount() {
+    Actions.Signup();
+  }
+
+  onToggleConfirmPassword() {
+    this.setState({ bShowConfirmPassword: !this.state.bShowConfirmPassword });
+  }
+
+  render() {
+    return (
+      <View style={ styles.container } >
+        <Spinner visible={ this.state.loggingIn }/>
+        <Image source={ background } style={ styles.background } resizeMode="cover">
+          <View style={ styles.descriptionContainer }>
+            <Image source={ logo } style={ styles.logo } resizeMode="cover"/>
+          </View>
+          <View style= { styles.inputContainer }>
+            <Image source= { panel } style={ styles.panel }>
+              <View style={ styles.buttonWrapper }>
+                <Text style={ styles.textTitle }>USER LOGIN</Text>
+              </View>
+              <TextInput
+                ref="email"
+                autoCapitalize="none"
+                autoCorrect={ false }
+                placeholder="Email"
+                placeholderTextColor={ commonColors.placeholderText }
+                textAlign="left"
+                style={ styles.input }
+                underlineColorAndroid="transparent"
+                returnKeyType={ 'next' }
+                keyboardType="email-address"
+                value={ this.state.email }
+                onChangeText={ (text) => this.setState({ email: text }) }
+                onSubmitEditing={ () => this.refs.password.focus() }
+              />
+              <View style={ styles.inputWrapper }>
+                <TextInput
+                  ref="password"
+                  autoCapitalize="none"
+                  autoCorrect={ false }
+                  placeholder="Password"
+                  secureTextEntry={ this.state.bShowConfirmPassword }
+                  placeholderTextColor={ commonColors.placeholderText }
+                  textAlign="left"
+                  style={ styles.input }
+                  underlineColorAndroid="transparent"
+                  returnKeyType={ 'go' }
+                  value={ this.state.password }
+                  onChangeText={ (text) => this.setState({ password: text }) }
+                  onSubmitEditing={ () => this.onLogin() }
+                />
+                <TouchableOpacity
+                  activeOpacity={ .5 }
+                  style={ styles.eyeButtonWrapper }
+                  onPress={ () => this.onToggleConfirmPassword() }
+                >
+                </TouchableOpacity>
+              </View>
+
+              <TouchableOpacity
+                activeOpacity={ .5 }
+                style={ styles.loginButtonWrapper }
+                onPress={ () => this.onLogin() }
+              >
+                <View style={ styles.buttonLogin }>
+                  <Text style={ styles.textButton }>LOGIN</Text>
+                </View>
+              </TouchableOpacity>
+            </Image>
+            <View style={ styles.buttonWrapper }>
+              <TouchableOpacity
+                activeOpacity={ .5 }
+                onPress={ () => this.onRememberMe() }
+              >
+                <Text style={ styles.textTitleButton }>Remember Me</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={ .5 }
+                onPress={ () => this.onForgotPassword() }
+              >
+                <Text style={ styles.textTitleButton }>Forgot Password</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={ styles.buttonWrapper }>
+              <TouchableOpacity
+                activeOpacity={ .5 }
+                style={ styles.loginButtonWrapper }
+                onPress={ () => this.onFBLogin() }
+              >
+                <View style={ styles.buttonLogin }>
+                  <Text style={ styles.textButton }>Login with Facebook</Text>
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={ .5 }
+                style={ styles.loginButtonWrapper }
+                onPress={ () => this.onGLogin() }
+              >
+                <View style={ styles.buttonLogin }>
+                  <Text style={ styles.textButton }>Login with google+</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+
+            <View style={ styles.buttonWrapper }>
+              <Text style={ styles.textTitleButton }>Don't have an account yet?</Text>
+              <TouchableOpacity
+                activeOpacity={ .5 }
+                onPress={ () => this.onCreateAccount() }
+              >
+                <Text style={ styles.textTitleButton }>Sign up</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={ styles.bottomContainer }/>
+        </Image>
+      </View>
+    );
+  }
+}
+
+export default connect(state => ({
+  status: state.auth.status
+  }),
+  (dispatch) => ({
+    actions: bindActionCreators(loginActions, dispatch)
+  })
+)(Login);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  background: {
+    width: screenWidth,
+    height: screenHiehgt,
+  },
+  panel: {
+    width: screenWidth * 0.7,
+    height: screenWidth * 0.7,
+  },
+  logo: {
+    width: screenWidth * 0.3,
+    height: screenWidth * 0.3,
+  },
+  descriptionContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 20,
+  },
+  inputContainer: {
+    flex: 1.3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  bottomContentWrap: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingTop: 10,
+  },
+  textTitle: {
+    color: commonColors.title,
+    // fontFamily: 'Blanch',
+    fontSize: 20,
+    backgroundColor: 'transparent',
+  },
+  textDescription: {
+    color: commonColors.title,
+    // fontFamily: 'OpenSans-Semibold',
+    fontSize: 12,
+    paddingTop: 5,
+    backgroundColor: 'transparent',
+  },
+  textInvite: {
+    color: commonColors.title,
+    // fontFamily: 'Open Sans',
+    fontSize: 12,
+    paddingVertical: 5,
+    backgroundColor: 'transparent',
+  },
+  imageEye: {
+    width: 20,
+    height: 13,
+  },
+  eyeButtonWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    position: 'absolute',
+    right: 40,
+  },
+  inputWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  input: {
+    fontSize: 14,
+    color: commonColors.title,
+    height: 45,
+    alignSelf: 'stretch',
+    marginHorizontal: 40,
+    borderColor: '#fff',
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderRadius: 4,
+    marginBottom: 5,
+    paddingHorizontal: 30,
+  },
+  loginButtonWrapper: {
+    marginTop: 16,
+    alignSelf: 'stretch',
+  },
+  buttonWrapper: {
+    marginTop: 16,
+    alignItems: 'center',
+  },
+  buttonLogin: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: commonColors.theme,
+    borderRadius: 4,
+    borderWidth: 4,
+    borderColor: commonColors.theme,
+    borderStyle: 'solid',
+    marginHorizontal: 40,
+    height: 40,
+  },
+  textButton: {
+    color: '#fff',
+    // fontFamily: 'Open Sans',
+    fontWeight: 'bold',
+    fontSize: 14,
+    backgroundColor: 'transparent',
+  },
+  textTitleButton: {
+    color: commonColors.title,
+    // fontFamily: 'Open Sans',
+    fontSize: 14,
+    backgroundColor: 'transparent',
+  },
+  text: {
+    color: commonColors.title,
+    // fontFamily: 'Open Sans',
+    fontSize: 14,
+    backgroundColor: 'transparent',
+  },
+});
