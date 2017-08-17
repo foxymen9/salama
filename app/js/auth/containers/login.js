@@ -26,7 +26,7 @@ import * as commonColors from '../../styles/commonColors';
 import { screenWidth, screenHiehgt } from '../../styles/commonStyles';
 import bendService from '../../bend/bendService'
 
-const background = require('../../../assets/imgs/background_profile.png');
+const background = require('../../../assets/imgs/bg.gif');
 const panel = require('../../../assets/imgs/panel.png');
 const logo = require('../../../assets/imgs/logo.png');
 const eye = require('../../../assets/imgs/eye.png');
@@ -174,7 +174,7 @@ class Login extends Component {
                 </View>
               </TouchableOpacity>
             </Image>
-            <View style={ styles.buttonWrapper }>
+            <View style={ styles.textWrapper }>
               <TouchableOpacity
                 activeOpacity={ .5 }
                 onPress={ () => this.onRememberMe() }
@@ -212,7 +212,7 @@ class Login extends Component {
               </TouchableOpacity>
             </View>
 
-            <View style={ styles.buttonWrapper }>
+            <View style={ styles.textWrapper }>
               <Text style={ styles.textTitleButton }>Don't have an account yet?</Text>
               <TouchableOpacity
                 activeOpacity={ .5 }
@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
   },
   panel: {
     width: screenWidth * 0.7,
-    height: screenWidth * 0.7,
+    height: screenWidth * 0.6,
   },
   logo: {
     width: screenWidth * 0.3,
@@ -330,6 +330,11 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     marginTop: 16,
     alignItems: 'center',
+  },
+  textWrapper: {
+    marginTop: 16,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   buttonLogin: {
     justifyContent: 'center',

@@ -60,7 +60,7 @@ export default class App extends Component {
 
     const scenes = Actions.create(
       <Scene key="root">
-        <Scene key="Login" component={ Login } initial={ true }/>
+        <Scene key="Login" component={ Login } initial={ true } hideNavBar={ true }/>
       </Scene>
     );
 
