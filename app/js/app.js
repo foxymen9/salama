@@ -18,6 +18,7 @@ const reducer = combineReducers(reducers);
 const store = createStoreWithMiddleware(reducer);
 
 import Login from './auth/containers/login';
+import Signup from './auth/containers/signup';
 
 export default class App extends Component {
   constructor(props) {
@@ -61,6 +62,7 @@ export default class App extends Component {
     const scenes = Actions.create(
       <Scene key="root">
         <Scene key="Login" component={ Login } initial={ true } hideNavBar={ true }/>
+        <Scene key="Signup" component={ Signup }  hideNavBar={ true }/>
       </Scene>
     );
 

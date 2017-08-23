@@ -22,14 +22,20 @@ import { Actions } from 'react-native-router-flux';
 
 import Spinner from 'react-native-loading-spinner-overlay';
 import timer from 'react-native-timer';
+import Video from 'react-native-video';
 import * as commonColors from '../../styles/commonColors';
 import { screenWidth, screenHiehgt } from '../../styles/commonStyles';
-import bendService from '../../bend/bendService'
+import bendService from '../../bend/bendService';
 
 const background = require('../../../assets/imgs/bg.gif');
-const panel = require('../../../assets/imgs/panel.png');
 const logo = require('../../../assets/imgs/logo.png');
-const eye = require('../../../assets/imgs/eye.png');
+const login = require('../../../assets/imgs/lp-03.png');
+const signup = require('../../../assets/imgs/lp-06.png');
+const username = require('../../../assets/imgs/l-01.png');
+const password = require('../../../assets/imgs/l-02.png');
+const web = require('../../../assets/imgs/lp-07.png');
+const backvideo = require('../../../assets/videos/background.mp4');
+
 
 class Login extends Component {
   constructor(props) {
@@ -88,12 +94,8 @@ class Login extends Component {
     })
   }
 
-  onGLogin() {
-    alert("onGLogin");
-  }
-
-  onFBLogin() {
-    alert("onFBLogin");
+  onGoToWeb() {
+    alert("onGoToWeb");
   }
 
   onForgotPassword() {
@@ -104,7 +106,7 @@ class Login extends Component {
     alert("onRememberMe");
   }
 
-  onCreateAccount() {
+  onSignUp() {
     Actions.Signup();
   }
 
@@ -116,114 +118,100 @@ class Login extends Component {
     return (
       <View style={ styles.container } >
         <Spinner visible={ this.state.loggingIn }/>
-        <Image source={ background } style={ styles.background } resizeMode="cover">
-          <View style={ styles.descriptionContainer }>
-            <Image source={ logo } style={ styles.logo } resizeMode="cover"/>
-          </View>
-          <View style= { styles.inputContainer }>
-            <Image source= { panel } style={ styles.panel }>
-              <View style={ styles.buttonWrapper }>
-                <Text style={ styles.textTitle }>USER LOGIN</Text>
-              </View>
-              <TextInput
-                ref="email"
-                autoCapitalize="none"
-                autoCorrect={ false }
-                placeholder="Email"
-                placeholderTextColor={ commonColors.placeholderText }
-                textAlign="left"
-                style={ styles.input }
-                underlineColorAndroid="transparent"
-                returnKeyType={ 'next' }
-                keyboardType="email-address"
-                value={ this.state.email }
-                onChangeText={ (text) => this.setState({ email: text }) }
-                onSubmitEditing={ () => this.refs.password.focus() }
-              />
-              <View style={ styles.inputWrapper }>
-                <TextInput
-                  ref="password"
-                  autoCapitalize="none"
-                  autoCorrect={ false }
-                  placeholder="Password"
-                  secureTextEntry={ this.state.bShowConfirmPassword }
-                  placeholderTextColor={ commonColors.placeholderText }
-                  textAlign="left"
-                  style={ styles.input }
-                  underlineColorAndroid="transparent"
-                  returnKeyType={ 'go' }
-                  value={ this.state.password }
-                  onChangeText={ (text) => this.setState({ password: text }) }
-                  onSubmitEditing={ () => this.onLogin() }
-                />
-                <TouchableOpacity
-                  activeOpacity={ .5 }
-                  style={ styles.eyeButtonWrapper }
-                  onPress={ () => this.onToggleConfirmPassword() }
-                >
-                </TouchableOpacity>
-              </View>
+        <Video
+          source={ backvideo }
+          rate={1.0}
+          volume={1.0}
+          muted={false}
+          resizeMode={"cover"}
+          repeat
+          style={styles.video}
+        />
+        <View style={ styles.descriptionContainer }>
+          <Image source={ logo } style={ styles.logo } resizeMode="center"/>
+        </View>
+        <View style= { styles.inputContainer }>
+          <Image source={ username } style={ styles.buttonLogin } resizeMode="cover">
+            <TextInput
+              ref="username"
+              autoCapitalize="none"
+              autoCorrect={ false }
+              placeholder="Username"
+              placeholderTextColor={ commonColors.placeholderText }
+              textAlign="left"
+              style={ styles.input }
+              underlineColorAndroid="transparent"
+              returnKeyType={ 'next' }
+              value={ this.state.email }
+              onChangeText={ (text) => this.setState({ email: text }) }
+              onSubmitEditing={ () => this.refs.password.focus() }
+            />
+          </Image>
+          <Image source={ password } style={ styles.buttonLogin } resizeMode="cover">
+            <TextInput
+              ref="password"
+              autoCapitalize="none"
+              autoCorrect={ false }
+              placeholder="Password"
+              secureTextEntry={ this.state.bShowConfirmPassword }
+              placeholderTextColor={ commonColors.placeholderText }
+              textAlign="left"
+              style={ styles.input }
+              underlineColorAndroid="transparent"
+              returnKeyType={ 'go' }
+              value={ this.state.password }
+              onChangeText={ (text) => this.setState({ password: text }) }
+              onSubmitEditing={ () => this.onLogin() }
+            />
+          </Image>
 
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                style={ styles.loginButtonWrapper }
-                onPress={ () => this.onLogin() }
-              >
-                <View style={ styles.buttonLogin }>
-                  <Text style={ styles.textButton }>LOGIN</Text>
-                </View>
-              </TouchableOpacity>
+          <View style={ styles.textWrapper }>
+            <TouchableOpacity
+              activeOpacity={ .5 }
+              onPress={ () => this.onRememberMe() }
+            >
+              <Text style={ styles.textRememberMe }>Remember Me</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              activeOpacity={ .5 }
+              onPress={ () => this.onForgotPassword() }
+            >
+              <Text style={ styles.textForgotPassword }>Forgot Password</Text>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity
+            activeOpacity={ .5 }
+            onPress={ () => this.onLogin() }
+          >
+            <Image source={ login } style={ styles.buttonLogin } resizeMode="cover">
+              <Text style={ styles.textButton }>Log in</Text>
             </Image>
-            <View style={ styles.textWrapper }>
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                onPress={ () => this.onRememberMe() }
-              >
-                <Text style={ styles.textTitleButton }>Remember Me</Text>
-              </TouchableOpacity>
+          </TouchableOpacity>
 
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                onPress={ () => this.onForgotPassword() }
-              >
-                <Text style={ styles.textTitleButton }>Forgot Password</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={ styles.buttonWrapper }>
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                style={ styles.loginButtonWrapper }
-                onPress={ () => this.onFBLogin() }
-              >
-                <View style={ styles.buttonLogin }>
-                  <Text style={ styles.textButton }>Login with Facebook</Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                style={ styles.loginButtonWrapper }
-                onPress={ () => this.onGLogin() }
-              >
-                <View style={ styles.buttonLogin }>
-                  <Text style={ styles.textButton }>Login with google+</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-
-            <View style={ styles.textWrapper }>
-              <Text style={ styles.textTitleButton }>Don't have an account yet?</Text>
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                onPress={ () => this.onCreateAccount() }
-              >
-                <Text style={ styles.textTitleButton }>Sign up</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={ styles.bottomContainer }/>
-        </Image>
+          <TouchableOpacity
+            activeOpacity={ .5 }
+            style={ styles.loginButtonWrapper }
+            onPress={ () => this.onSignUp() }
+          >
+            <Image source={ signup } style={ styles.buttonLogin } resizeMode="cover">
+              <Text style={ styles.textButton }>Sign up</Text>
+            </Image>
+          </TouchableOpacity>
+          
+        </View>
+        <View style={ styles.bottomContainer }>
+          <TouchableOpacity
+            activeOpacity={ .5 }
+            style={ styles.bottomButtonWrapper }
+            onPress={ () => this.onGoToWeb() }
+          >
+            <Image source={ web } style={ styles.buttonWeb } resizeMode="cover">
+              <Text style={ styles.textButton }>Go to main website</Text>
+            </Image>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -245,13 +233,9 @@ const styles = StyleSheet.create({
     width: screenWidth,
     height: screenHiehgt,
   },
-  panel: {
-    width: screenWidth * 0.7,
-    height: screenWidth * 0.6,
-  },
   logo: {
-    width: screenWidth * 0.3,
-    height: screenWidth * 0.3,
+    width: screenWidth * 0.5,
+    height: screenWidth * 0.5,
   },
   descriptionContainer: {
     flex: 1,
@@ -294,38 +278,29 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     backgroundColor: 'transparent',
   },
-  imageEye: {
-    width: 20,
-    height: 13,
-  },
-  eyeButtonWrapper: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    position: 'absolute',
-    right: 40,
-  },
   inputWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
   },
   input: {
-    fontSize: 14,
+    fontSize: 12,
     color: commonColors.title,
     height: 45,
     alignSelf: 'stretch',
-    marginHorizontal: 40,
-    borderColor: '#fff',
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderRadius: 4,
-    marginBottom: 5,
-    paddingHorizontal: 30,
+    // marginHorizontal: 40,
+    // borderColor: '#fff',
+    // backgroundColor: '#fff',
+    // borderWidth: 1,
+    // borderRadius: 4,
+    // marginBottom: 5,
+    paddingLeft: 45,
+    marginBottom: 10,
   },
   loginButtonWrapper: {
     marginTop: 16,
     alignSelf: 'stretch',
+    alignItems: 'center',
   },
   buttonWrapper: {
     marginTop: 16,
@@ -334,18 +309,21 @@ const styles = StyleSheet.create({
   textWrapper: {
     marginTop: 16,
     flexDirection: 'row',
-    justifyContent: 'center',
+    width: screenWidth * 0.8,
+    justifyContent: 'space-between',
   },
   buttonLogin: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: commonColors.theme,
-    borderRadius: 4,
-    borderWidth: 4,
-    borderColor: commonColors.theme,
-    borderStyle: 'solid',
     marginHorizontal: 40,
     height: 40,
+    width: screenWidth * 0.8,
+  },
+  buttonWeb: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 40,
+    width: screenWidth,
   },
   textButton: {
     color: '#fff',
@@ -357,13 +335,36 @@ const styles = StyleSheet.create({
   textTitleButton: {
     color: commonColors.title,
     // fontFamily: 'Open Sans',
-    fontSize: 14,
+    fontSize: 12,
     backgroundColor: 'transparent',
+  },
+  textRememberMe: {
+    color: commonColors.placeholderText,
+    fontSize: 12,
+    backgroundColor: 'transparent',
+    textAlign: 'left',
+  },
+  textForgotPassword: {
+    color: commonColors.placeholderText,
+    fontSize: 12,
+    backgroundColor: 'transparent',
+    textAlign: 'right',
   },
   text: {
     color: commonColors.title,
     // fontFamily: 'Open Sans',
-    fontSize: 14,
+    fontSize: 12,
     backgroundColor: 'transparent',
+  },
+  video: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+  bottomButtonWrapper: {
+    position: 'absolute',
+    bottom: 0,
   },
 });
