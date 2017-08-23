@@ -299,6 +299,8 @@ const styles = StyleSheet.create({
     left: 30,
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: 'red',
+    flex: 1,
   },
   backButton: {
   },
