@@ -31,13 +31,13 @@ import bendService from '../../bend/bendService'
 
 const background = require('../../../assets/imgs/bg.gif');
 const logo = require('../../../assets/imgs/logo.png');
-const create = require('../../../assets/imgs/lp-03.png');
-const signup = require('../../../assets/imgs/lp-06.png');
-const username = require('../../../assets/imgs/l-01.png');
-const email = require('../../../assets/imgs/l-01.png');
-const mobilenumber = require('../../../assets/imgs/l-01.png');
-const fullname = require('../../../assets/imgs/l-01.png');
-const password = require('../../../assets/imgs/l-02.png');
+const create = require('../../../assets/imgs/log.png');
+const signup = require('../../../assets/imgs/signin.png');
+const username = require('../../../assets/imgs/user.png');
+const email = require('../../../assets/imgs/mail.png');
+const mobilenumber = require('../../../assets/imgs/phone.png');
+const fullname = require('../../../assets/imgs/user.png');
+const password = require('../../../assets/imgs/password.png');
 const back = require('../../../assets/imgs/back.png');
 const backvideo = require('../../../assets/videos/background.mp4');
 
@@ -148,7 +148,7 @@ class Signup extends Component {
           <View style={ styles.inputContainer }>
             <KeyboardAwareScrollView>
             <View style={ styles.inputWrapper }>
-              <Image source={ fullname } style={ styles.buttonLogin } resizeMode="cover">
+              <Image source={ fullname } style={ styles.buttonLogin } resizeMode="contain">
                 <TextInput
                   ref="fullname"
                   autoCapitalize="none"
@@ -166,7 +166,7 @@ class Signup extends Component {
               </Image>
             </View>
             <View style={ styles.inputWrapper }>
-              <Image source={ mobilenumber } style={ styles.buttonLogin } resizeMode="cover">
+              <Image source={ mobilenumber } style={ styles.buttonLogin } resizeMode="contain">
                 <TextInput
                   ref="mobilenumber"
                   autoCapitalize="none"
@@ -185,7 +185,7 @@ class Signup extends Component {
               </Image>
             </View>
             <View style={ styles.inputWrapper }>
-              <Image source={ email } style={ styles.buttonLogin } resizeMode="cover">
+              <Image source={ email } style={ styles.buttonLogin } resizeMode="contain">
                 <TextInput
                   ref="email"
                   autoCapitalize="none"
@@ -204,7 +204,7 @@ class Signup extends Component {
               </Image>
             </View>
             <View style={ styles.inputWrapper }>
-              <Image source={ username } style={ styles.buttonLogin } resizeMode="cover">
+              <Image source={ username } style={ styles.buttonLogin } resizeMode="contain">
                 <TextInput
                   ref="username"
                   autoCapitalize="none"
@@ -222,7 +222,7 @@ class Signup extends Component {
               </Image>
             </View>
             <View style={ styles.inputWrapper }>
-              <Image source={ password } style={ styles.buttonLogin } resizeMode="cover">
+              <Image source={ password } style={ styles.buttonLogin } resizeMode="contain">
                 <TextInput
                   ref="password"
                   autoCapitalize="none"
@@ -241,7 +241,7 @@ class Signup extends Component {
               </Image>
             </View>
             <View style={ styles.inputWrapper }>
-              <Image source={ password } style={ styles.buttonLogin } resizeMode="cover">
+              <Image source={ password } style={ styles.buttonLogin } resizeMode="contain">
                 <TextInput
                   ref="confirmPassword"
                   autoCapitalize="none"
@@ -299,8 +299,8 @@ const styles = StyleSheet.create({
     left: 30,
     flexDirection: 'row',
     alignItems: 'center',
+    display: 'flex',
     backgroundColor: 'red',
-    flex: 1,
   },
   backButton: {
   },
@@ -364,7 +364,6 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 12,
     color: commonColors.title,
-    height: 45,
     alignSelf: 'stretch',
     // marginHorizontal: 40,
     // borderColor: '#fff',
@@ -373,7 +372,6 @@ const styles = StyleSheet.create({
     // borderRadius: 4,
     // marginBottom: 5,
     paddingLeft: 45,
-    marginBottom: 10,
   },
   buttonSubmit: {
     justifyContent: 'center',

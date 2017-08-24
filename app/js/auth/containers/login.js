@@ -29,11 +29,11 @@ import bendService from '../../bend/bendService';
 
 const background = require('../../../assets/imgs/bg.gif');
 const logo = require('../../../assets/imgs/logo.png');
-const login = require('../../../assets/imgs/lp-03.png');
-const signup = require('../../../assets/imgs/lp-06.png');
-const username = require('../../../assets/imgs/l-01.png');
-const password = require('../../../assets/imgs/l-02.png');
-const web = require('../../../assets/imgs/lp-07.png');
+const login = require('../../../assets/imgs/log.png');
+const signup = require('../../../assets/imgs/signin.png');
+const username = require('../../../assets/imgs/user.png');
+const password = require('../../../assets/imgs/password.png');
+const web = require('../../../assets/imgs/gotoweb.png');
 const backvideo = require('../../../assets/videos/background.mp4');
 
 
@@ -131,7 +131,7 @@ class Login extends Component {
           <Image source={ logo } style={ styles.logo } resizeMode="center"/>
         </View>
         <View style= { styles.inputContainer }>
-          <Image source={ username } style={ styles.buttonLogin } resizeMode="cover">
+          <Image source={ username } style={ styles.buttonLogin } resizeMode="contain">
             <TextInput
               ref="username"
               autoCapitalize="none"
@@ -147,7 +147,7 @@ class Login extends Component {
               onSubmitEditing={ () => this.refs.password.focus() }
             />
           </Image>
-          <Image source={ password } style={ styles.buttonLogin } resizeMode="cover">
+          <Image source={ password } style={ styles.buttonLogin } resizeMode="contain">
             <TextInput
               ref="password"
               autoCapitalize="none"
@@ -295,7 +295,6 @@ const styles = StyleSheet.create({
     // borderRadius: 4,
     // marginBottom: 5,
     paddingLeft: 45,
-    marginBottom: 10,
   },
   loginButtonWrapper: {
     marginTop: 16,
