@@ -11,7 +11,7 @@ const language = {
     "fullname": {"EN": "Full Name", "AR": "الاسم الكامل"},
     "mobileNumber": {"EN": "Mobile Number", "AR": "رقم الهاتف المحمول"},
     "email": {"EN": "Email", "AR": "البريد الإلكتروني"},
-    "acceptPolicy": {"EN": "I accept the terms of the partner policy", "AR": "I accept the terms of the partner policy"},
+    "acceptPolicy": {"EN": "I accept the terms of the partner policy", "AR": "أوافق على بنود السياسة"},
     "createAccount": {"EN": "Create an aaccount", "AR": "انشئ حساب"},
 };
 export default language;

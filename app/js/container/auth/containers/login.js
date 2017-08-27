@@ -35,6 +35,8 @@ const login = require('../../../../assets/imgs/log.png');
 const signup = require('../../../../assets/imgs/signin.png');
 const username = require('../../../../assets/imgs/user.png');
 const password = require('../../../../assets/imgs/password.png');
+const username_ar = require('../../../../assets/imgs/user_ar.png');
+const password_ar = require('../../../../assets/imgs/password_ar.png');
 const web = require('../../../../assets/imgs/gotoweb.png');
 const backvideo = require('../../../../assets/videos/background.mp4');
 
@@ -122,7 +124,7 @@ class Login extends Component {
               <Image source={ logo } style={ styles.logo } resizeMode="center"/>
             </View>
             <View style= { styles.inputContainer }>
-                <Image source={ username } style={ styles.buttonLogin } resizeMode="contain">
+                <Image source={ currentLanguage == "EN" ? username : username_ar } style={ styles.buttonLogin } resizeMode="contain">
                   <TextInput
                     ref="username"
                     autoCapitalize="none"
@@ -130,7 +132,7 @@ class Login extends Component {
                     placeholder={language.username[currentLanguage]}
                     placeholderTextColor={ commonColors.placeholderText }
                     textAlign={currentLanguage=="EN" ? "left" : "right" }
-                    style={ styles.input }
+                    style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
                     underlineColorAndroid="transparent"
                     returnKeyType={ 'next' }
                     value={ this.state.email }
@@ -138,7 +140,7 @@ class Login extends Component {
                     onSubmitEditing={ () => this.refs.password.focus() }
                   />
                 </Image>
-                <Image source={ password } style={ styles.buttonLogin } resizeMode="contain">
+                <Image source={ currentLanguage == "EN" ? password : password_ar } style={ styles.buttonLogin } resizeMode="contain">
                   <TextInput
                     ref="password"
                     autoCapitalize="none"
@@ -147,7 +149,7 @@ class Login extends Component {
                     secureTextEntry={ this.state.bShowConfirmPassword }
                     placeholderTextColor={ commonColors.placeholderText }
                     textAlign={currentLanguage=="EN" ? "left" : "right" }
-                    style={ styles.input }
+                    style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
                     underlineColorAndroid="transparent"
                     returnKeyType={ 'go' }
                     value={ this.state.password }
@@ -258,7 +260,14 @@ const styles = StyleSheet.create({
     color: commonColors.title,
     height: 45,
     alignSelf: 'stretch',
-    paddingLeft: 45,
+    marginLeft: 45,
+  },
+  input_ar: {
+    fontSize: 12,
+    color: commonColors.title,
+    height: 45,
+    alignSelf: 'stretch',
+    marginRight: 45,
   },
   loginButtonWrapper: {
     marginTop: 16,

@@ -35,6 +35,11 @@ const email = require('../../../../assets/imgs/mail.png');
 const mobilenumber = require('../../../../assets/imgs/phone.png');
 const fullname = require('../../../../assets/imgs/user.png');
 const password = require('../../../../assets/imgs/password.png');
+const username_ar = require('../../../../assets/imgs/user.png');
+const email_ar = require('../../../../assets/imgs/mail_ar.png');
+const mobilenumber_ar = require('../../../../assets/imgs/phone_ar.png');
+const fullname_ar = require('../../../../assets/imgs/user_ar.png');
+const password_ar = require('../../../../assets/imgs/password_ar.png');
 const back = require('../../../../assets/imgs/back.png');
 const backvideo = require('../../../../assets/videos/background.mp4');
 
@@ -106,7 +111,7 @@ class Signup extends Component {
             <View style={ styles.keyboardContainer }>
               <View style={ styles.inputContainer }>
                 <View style={ styles.inputWrapper }>
-                  <Image source={ fullname } style={ styles.textField } resizeMode="contain">
+                  <Image source={ currentLanguage == "EN" ? fullname : fullname_ar } style={ styles.textField } resizeMode="contain">
                     <TextInput
                       ref="fullname"
                       autoCapitalize="none"
@@ -114,7 +119,7 @@ class Signup extends Component {
                       placeholder={language.fullname[currentLanguage]}
                       placeholderTextColor={ commonColors.placeholderText }
                       textAlign={ currentLanguage=="EN" ? "left" : "right" }
-                      style={ styles.input }
+                      style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
                       underlineColorAndroid="transparent"
                       returnKeyType={ 'next' }
                       value={ this.state.fullname }
@@ -124,7 +129,7 @@ class Signup extends Component {
                   </Image>
                 </View>
                 <View style={ styles.inputWrapper }>
-                  <Image source={ fullname } style={ styles.textField } resizeMode="contain">
+                  <Image source={ currentLanguage == "EN" ? fullname : fullname_ar } style={ styles.textField } resizeMode="contain">
                     <TextInput
                       ref="username"
                       autoCapitalize="none"
@@ -132,7 +137,7 @@ class Signup extends Component {
                       placeholder={language.username[currentLanguage]}
                       placeholderTextColor={ commonColors.placeholderText }
                       textAlign={ currentLanguage=="EN" ? "left" : "right" }
-                      style={ styles.input }
+                      style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
                       underlineColorAndroid="transparent"
                       returnKeyType={ 'next' }
                       value={ this.state.username }
@@ -142,7 +147,7 @@ class Signup extends Component {
                   </Image>
                 </View>
                 <View style={ styles.inputWrapper }>
-                  <Image source={ mobilenumber } style={ styles.textField } resizeMode="contain">
+                  <Image source={ currentLanguage == "EN" ? mobilenumber : mobilenumber_ar } style={ styles.textField } resizeMode="contain">
                     <TextInput
                       ref="mobilenumber"
                       autoCapitalize="none"
@@ -150,7 +155,7 @@ class Signup extends Component {
                       placeholder={language.mobileNumber[currentLanguage]}
                       placeholderTextColor={ commonColors.placeholderText }
                       textAlign={ currentLanguage=="EN" ? "left" : "right" }
-                      style={ styles.input }
+                      style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
                       underlineColorAndroid="transparent"
                       returnKeyType={ 'next' }
                       value={ this.state.email }
@@ -161,7 +166,7 @@ class Signup extends Component {
                   </Image>
                 </View>
                 <View style={ styles.inputWrapper }>
-                  <Image source={ email } style={ styles.textField } resizeMode="contain">
+                  <Image source={ currentLanguage == "EN" ? email : email_ar } style={ styles.textField } resizeMode="contain">
                     <TextInput
                       ref="email"
                       autoCapitalize="none"
@@ -169,7 +174,7 @@ class Signup extends Component {
                       placeholder={language.email[currentLanguage]}
                       placeholderTextColor={ commonColors.placeholderText }
                       textAlign={ currentLanguage=="EN" ? "left" : "right" }
-                      style={ styles.input }
+                      style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
                       underlineColorAndroid="transparent"
                       returnKeyType={ 'next' }
                       keyboardType="email-address"
@@ -180,7 +185,7 @@ class Signup extends Component {
                   </Image>
                 </View>
                 <View style={ styles.inputWrapper }>
-                  <Image source={ password } style={ styles.textField } resizeMode="contain">
+                  <Image source={ currentLanguage == "EN" ? password : password_ar } style={ styles.textField } resizeMode="contain">
                     <TextInput
                       ref="password"
                       autoCapitalize="none"
@@ -189,7 +194,7 @@ class Signup extends Component {
                       secureTextEntry={ this.state.bShowConfirmPassword }
                       placeholderTextColor={ commonColors.placeholderText }
                       textAlign={ currentLanguage=="EN" ? "left" : "right" }
-                      style={ styles.input }
+                      style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
                       underlineColorAndroid="transparent"
                       returnKeyType={ 'next' }
                       value={ this.state.password }
@@ -199,7 +204,7 @@ class Signup extends Component {
                   </Image>
                 </View>
                 <View style={ styles.inputWrapper }>
-                  <Image source={ password } style={ styles.textField } resizeMode="contain">
+                  <Image source={ currentLanguage == "EN" ? password : password_ar } style={ styles.textField } resizeMode="contain">
                     <TextInput
                       ref="confirmPassword"
                       autoCapitalize="none"
@@ -208,7 +213,7 @@ class Signup extends Component {
                       secureTextEntry={ this.state.bShowConfirmPassword }
                       placeholderTextColor={ commonColors.placeholderText }
                       textAlign={ currentLanguage=="EN" ? "left" : "right" }
-                      style={ styles.input }
+                      style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
                       underlineColorAndroid="transparent"
                       returnKeyType={ 'next' }
                       value={ this.state.confirmPassword }
@@ -322,7 +327,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: commonColors.title,
     alignSelf: 'stretch',
-    paddingLeft: 45,
+    marginLeft: 45,
+  },
+  input_ar: {
+    fontSize: 12,
+    color: commonColors.title,
+    height: 45,
+    alignSelf: 'stretch',
+    marginRight: 45,
   },
   textButton: {
     color: '#fff',
