@@ -232,6 +232,7 @@ class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: screenHiehgt,
   },
   video: {
     position: 'absolute',

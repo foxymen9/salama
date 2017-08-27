@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   backContainer: {
-    marginTop: 15,
+    marginTop: 25,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
