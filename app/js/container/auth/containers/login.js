@@ -157,6 +157,7 @@ class Login extends Component {
                     onSubmitEditing={ () => this.onLogin() }
                   />
                 </Image>
+              {currentLanguage == "EN" ?
               <View style={ styles.textWrapper }>
                 <CheckBox 
                   style={ styles.checkboxRememberMe } 
@@ -174,6 +175,32 @@ class Login extends Component {
                   <Text style={ styles.textForgotPassword }>{language.forgotPassword[currentLanguage]}</Text>
                 </TouchableOpacity>
               </View>
+              :
+              <View style={ styles.textWrapper }>
+                <TouchableOpacity
+                  activeOpacity={ .5 }
+                  onPress={ () => this.onForgotPassword() }
+                >
+                  <Text style={ styles.textForgotPassword }>{language.forgotPassword[currentLanguage]}</Text>
+                </TouchableOpacity>
+                <View style={ styles.rememberWrapper }>
+                  <TouchableOpacity
+                    activeOpacity={ .5 }
+                    onPress={ ()=>this.onRememberMe() } 
+                  >
+                    <Text style={ styles.textForgotPasswordAr }>{language.rememberMe[currentLanguage]}</Text>
+                  </TouchableOpacity>
+                  <CheckBox 
+                    style={ styles.checkboxRememberMe } 
+                    onChange={ ()=>this.onRememberMe() } 
+                    checked={ this.state.rememberMe } 
+                    labelStyle={ styles.textRememberMe } 
+                    iconSize={20}
+                    iconName="matMix"
+                  />
+                </View>
+              </View>
+              }
               <TouchableOpacity
                 activeOpacity={ .5 }
                 onPress={ () => this.onLogin() }
@@ -289,6 +316,9 @@ const styles = StyleSheet.create({
     height: 40,
     width: screenWidth * 0.8,
   },
+  rememberWrapper: {
+    flexDirection: 'row',
+  },
   checkboxRememberMe: {
     backgroundColor: 'transparent',
   },
@@ -297,13 +327,22 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginLeft: 10,
   },
+  textForgotPasswordAr: {
+    color: commonColors.placeholderText,
+    fontSize: 12,
+    fontStyle: 'italic',
+    backgroundColor: 'transparent',
+    textAlign: 'right',
+    marginTop: 3,
+    marginRight: 10,
+  },
   textForgotPassword: {
     color: commonColors.placeholderText,
     fontSize: 12,
     fontStyle: 'italic',
     backgroundColor: 'transparent',
     textAlign: 'right',
-    marginTop: 4,
+    marginTop: 3,
   },
   switchContainer: {
     flex: 1,

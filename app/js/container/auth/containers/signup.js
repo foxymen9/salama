@@ -223,6 +223,7 @@ class Signup extends Component {
                   </Image>
                 </View>
                 <View style={ styles.textWrapper }>
+                {currentLanguage == "EN" ?
                   <View style={ styles.policyWrapper }>
                     <CheckBox
                       style={ styles.checkboxPolicy } 
@@ -234,6 +235,24 @@ class Signup extends Component {
                       iconName="matMix"
                     />
                   </View>
+                :
+                  <View style={ styles.policyWrapperAr }>
+                    <TouchableOpacity
+                      activeOpacity={ .5 }
+                      onPress={ ()=>this.setState({acceptPolicy: !this.state.acceptPolicy}) } 
+                    >
+                      <Text style={ styles.textPolicyAr }>{language.acceptPolicy[currentLanguage]}</Text>
+                    </TouchableOpacity>
+                    <CheckBox
+                      style={ styles.checkboxPolicy } 
+                      onChange={ ()=>this.setState({acceptPolicy: !this.state.acceptPolicy}) } 
+                      checked={ this.state.acceptPolicy }
+                      labelStyle={ styles.textPolicy } 
+                      iconSize={20}
+                      iconName="matMix"
+                    />
+                  </View>
+                }
                 </View>
               </View>
               <View style= { styles.signupButtonContainer }>
@@ -357,6 +376,12 @@ const styles = StyleSheet.create({
   },
   policyWrapper: { 
     width: screenWidth * 0.8,
+    flexDirection: 'row',
+  },
+  policyWrapperAr: { 
+    width: screenWidth * 0.8,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   checkboxPolicy: {
     backgroundColor: 'transparent',
@@ -365,6 +390,13 @@ const styles = StyleSheet.create({
     color: commonColors.placeholderText,
     fontSize: 12,
     marginLeft: 10,
+  },
+  textPolicyAr: {
+    color: commonColors.placeholderText,
+    fontSize: 12,
+    marginRight: 10,
+    marginTop: 3,
+    backgroundColor: 'transparent',
   },
   signupButtonContainer: {
     alignItems: 'center',
