@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   container: {
-    flex: 4,
+    flex: 1,
   },
   backContainer: {
     marginTop: 15,
@@ -294,9 +294,7 @@ const styles = StyleSheet.create({
     height: screenWidth * 0.5,
   },
   keyboardContainer: {
-    flex: 3,
     width: screenWidth,
-    height: screenHiehgt,
   },
   inputContainer: {
     justifyContent: 'center',
@@ -357,7 +355,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   signupButtonContainer: {
-    flex: 1.1,
     alignItems: 'center',
   },
   btnSignup: {
