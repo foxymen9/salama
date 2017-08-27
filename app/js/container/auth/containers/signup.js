@@ -119,7 +119,7 @@ class Signup extends Component {
                       returnKeyType={ 'next' }
                       value={ this.state.fullname }
                       onChangeText={ (text) => this.setState({ fullname: text }) }
-                      onSubmitEditing={ () => this.refs.mobilenumber.focus() }
+                      onSubmitEditing={ () => this.refs.username.focus() }
                     />
                   </Image>
                 </View>
@@ -175,7 +175,7 @@ class Signup extends Component {
                       keyboardType="email-address"
                       value={ this.state.email }
                       onChangeText={ (text) => this.setState({ email: text }) }
-                      onSubmitEditing={ () => this.refs.username.focus() }
+                      onSubmitEditing={ () => this.refs.password.focus() }
                     />
                   </Image>
                 </View>
@@ -212,7 +212,7 @@ class Signup extends Component {
                       underlineColorAndroid="transparent"
                       returnKeyType={ 'next' }
                       value={ this.state.confirmPassword }
-                      onSubmitEditing={ () => this.refs.communityCode.focus() }
+                      onSubmitEditing={ () => Keyboard.dismiss() }
                       onChangeText={ (text) => this.setState({ confirmPassword: text }) }
                     />
                   </Image>
