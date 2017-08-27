@@ -1,4 +1,4 @@
-import auth from './auth/reducer';
+import auth from './container/auth/reducer';
 
 export {
   auth,
