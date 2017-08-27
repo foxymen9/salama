@@ -213,17 +213,17 @@ class Login extends Component {
               </TouchableOpacity>
             </View>
           </View>
+          <View style={ styles.bottomContainer }>
+            <TouchableOpacity
+              activeOpacity={ .5 }
+              onPress={ () => this.onGoToWeb() }
+            >
+              <Image source={ web } style={ styles.buttonWeb } resizeMode="cover">
+                <Text style={ styles.textButton }>{language.gotoMainWebsite[currentLanguage]}</Text>
+              </Image>
+            </TouchableOpacity>
+          </View>
         </KeyboardAwareScrollView>
-        <View style={ styles.bottomContainer }>
-          <TouchableOpacity
-            activeOpacity={ .5 }
-            onPress={ () => this.onGoToWeb() }
-          >
-            <Image source={ web } style={ styles.buttonWeb } resizeMode="cover">
-              <Text style={ styles.textButton }>{language.gotoMainWebsite[currentLanguage]}</Text>
-            </Image>
-          </TouchableOpacity>
-        </View>
       </View>
     );
   }
@@ -232,6 +232,7 @@ class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: screenHiehgt,
   },
   video: {
     position: 'absolute',
