@@ -269,14 +269,14 @@ const styles = StyleSheet.create({
     right: 0,
   },
   descriptionContainer: {
-    flex: 1,
+    flex: 0.8,
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 20,
   },
   logo: {
-    width: screenWidth * 0.5,
-    height: screenWidth * 0.5,
+    width: screenWidth,
+    height: screenWidth * 0.3,
   },
   inputContainer: {
     flex: 1,

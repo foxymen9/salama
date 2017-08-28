@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: screenWidth * 0.5,
-    height: screenWidth * 0.5,
+    height: screenWidth * 0.4,
   },
   keyboardContainer: {
     width: screenWidth,
