@@ -1,30 +1,35 @@
 import * as types from './actionTypes';
 
 const initialState = {
-  loginStatus: null,
+  loading: false,
+  error: null,
   signupStatus: null,
+  loginResult: null,
   currentLanguage: 'EN',
 };
 
 export default function auth(state = initialState, action = {}) {
   switch (action.type) {
     /************************/
-    /* LogIn */
+    /* LogIn */ 
     /************************/
     case types.LOGIN_REQUEST:
       return {
         ...state,
-        loginStatus: 'login_request',
+        loading: true,
+        error: null,
       };
     case types.LOGIN_SUCCESS:
       return {
         ...state,
-        loginStatus: 'login_success',
+        loading: false,
+        loginResult: action.result.data,
       };
     case types.LOGIN_ERROR:
       return {
         ...state,
-        loginStatus: 'login_error',
+        loading: false,
+        error: action.error,
       };
     /************************/
     /* Change Language(EN, AR) */

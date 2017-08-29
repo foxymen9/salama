@@ -49,7 +49,6 @@ class Login extends Component {
       email: '',
       password: '',
       bShowConfirmPassword: true,
-      loggingIn: false,
       rememberMe: false,
     };
   }
@@ -74,7 +73,6 @@ class Login extends Component {
       return;
     }
 
-    this.setState({ loggingIn: true });
     this.props.logIn({ email: email, password: password });
   }
 

@@ -7,10 +7,11 @@ import {
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import promiseMiddleware from '../js/utils/middlewares/promiseMiddleware';
 import { Actions, ActionConst, Scene, Router } from 'react-native-router-flux';
 import * as reducers from './reducers';
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk, promiseMiddleware)(createStore);
 const reducer = combineReducers(reducers);
 const store = createStoreWithMiddleware(reducer);
 
