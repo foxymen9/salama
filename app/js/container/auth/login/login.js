@@ -21,12 +21,13 @@ import { Actions } from 'react-native-router-flux';
 
 import CheckBox from 'react-native-checkbox-heaven';
 import Spinner from 'react-native-loading-spinner-overlay';
+import OrientationLoadingOveraly from 'react-native-orientation-loading-overlay';
 import timer from 'react-native-timer';
 import Video from 'react-native-video';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as commonColors from '../../../styles/commonColors';
-import { screenWidth, screenHiehgt } from '../../../styles/commonStyles';
-import { logIn, changeLanguage } from '../actions';
+import { screenWidth, screenHeight } from '../../../styles/commonStyles';
+import { logIn, changeLanguage } from './actions';
 import language from '../../../utils/language/language';
 
 const background = require('../../../../assets/imgs/bg.gif');
@@ -39,7 +40,8 @@ const username_ar = require('../../../../assets/imgs/user_ar.png');
 const password_ar = require('../../../../assets/imgs/password_ar.png');
 const web = require('../../../../assets/imgs/gotoweb.png');
 const backvideo = require('../../../../assets/videos/background.mp4');
-
+const arrow = require('../../../../assets/imgs/login/arrow.png');
+const arrow_ar = require('../../../../assets/imgs/login/arrow_ar.png');
 
 class Login extends Component {
   constructor(props) {
@@ -49,13 +51,14 @@ class Login extends Component {
       email: '',
       password: '',
       bShowConfirmPassword: true,
-      loggingIn: false,
       rememberMe: false,
+      loading: false,
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    const { loginStatus } = nextProps;
+    const { loading } = nextProps;
+    this.setState({loading: loading});
   }
 
   onLogin() {
@@ -74,7 +77,6 @@ class Login extends Component {
       return;
     }
 
-    this.setState({ loggingIn: true });
     this.props.logIn({ email: email, password: password });
   }
 
@@ -88,6 +90,10 @@ class Login extends Component {
 
   onRememberMe() {
     this.setState({rememberMe: !this.state.rememberMe});
+  }
+
+  onSkip() {
+    Actions.Main();
   }
 
   onSignUp() {
@@ -108,7 +114,7 @@ class Login extends Component {
 
     return (
       <View style={ styles.container } >
-        <Spinner visible={ this.state.loggingIn }/>
+        <OrientationLoadingOveraly visible={ this.state.loading } />
         <Video
           source={ backvideo }
           rate={1.0}
@@ -124,39 +130,39 @@ class Login extends Component {
               <Image source={ logo } style={ styles.logo } resizeMode="center"/>
             </View>
             <View style= { styles.inputContainer }>
-                <Image source={ currentLanguage == "EN" ? username : username_ar } style={ styles.buttonLogin } resizeMode="contain">
-                  <TextInput
-                    ref="username"
-                    autoCapitalize="none"
-                    autoCorrect={ false }
-                    placeholder={language.username[currentLanguage]}
-                    placeholderTextColor={ commonColors.placeholderText }
-                    textAlign={currentLanguage=="EN" ? "left" : "right" }
-                    style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
-                    underlineColorAndroid="transparent"
-                    returnKeyType={ 'next' }
-                    value={ this.state.email }
-                    onChangeText={ (text) => this.setState({ email: text }) }
-                    onSubmitEditing={ () => this.refs.password.focus() }
-                  />
-                </Image>
-                <Image source={ currentLanguage == "EN" ? password : password_ar } style={ styles.buttonLogin } resizeMode="contain">
-                  <TextInput
-                    ref="password"
-                    autoCapitalize="none"
-                    autoCorrect={ false }
-                    placeholder={language.password[currentLanguage]}
-                    secureTextEntry={ this.state.bShowConfirmPassword }
-                    placeholderTextColor={ commonColors.placeholderText }
-                    textAlign={currentLanguage=="EN" ? "left" : "right" }
-                    style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
-                    underlineColorAndroid="transparent"
-                    returnKeyType={ 'go' }
-                    value={ this.state.password }
-                    onChangeText={ (text) => this.setState({ password: text }) }
-                    onSubmitEditing={ () => this.onLogin() }
-                  />
-                </Image>
+              <Image source={ currentLanguage == "EN" ? username : username_ar } style={ styles.buttonLogin } resizeMode="contain">
+                <TextInput
+                  ref="username"
+                  autoCapitalize="none"
+                  autoCorrect={ false }
+                  placeholder={language.username[currentLanguage]}
+                  placeholderTextColor={ commonColors.placeholderText }
+                  textAlign={currentLanguage=="EN" ? "left" : "right" }
+                  style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
+                  underlineColorAndroid="transparent"
+                  returnKeyType={ 'next' }
+                  value={ this.state.email }
+                  onChangeText={ (text) => this.setState({ email: text }) }
+                  onSubmitEditing={ () => this.refs.password.focus() }
+                />
+              </Image>
+              <Image source={ currentLanguage == "EN" ? password : password_ar } style={ styles.buttonLogin } resizeMode="contain">
+                <TextInput
+                  ref="password"
+                  autoCapitalize="none"
+                  autoCorrect={ false }
+                  placeholder={language.password[currentLanguage]}
+                  secureTextEntry={ this.state.bShowConfirmPassword }
+                  placeholderTextColor={ commonColors.placeholderText }
+                  textAlign={currentLanguage=="EN" ? "left" : "right" }
+                  style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
+                  underlineColorAndroid="transparent"
+                  returnKeyType={ 'go' }
+                  value={ this.state.password }
+                  onChangeText={ (text) => this.setState({ password: text }) }
+                  onSubmitEditing={ () => this.onLogin() }
+                />
+              </Image>
               {currentLanguage == "EN" ?
               <View style={ styles.textWrapper }>
                 <CheckBox 
@@ -219,7 +225,23 @@ class Login extends Component {
                   <Text style={ styles.textButton }>{language.signup[currentLanguage]}</Text>
                 </Image>
               </TouchableOpacity>
-              
+            </View>
+            <View style={ styles.skipContainer }>
+              <TouchableOpacity
+                activeOpacity={ .5 }
+                style={ styles.loginButtonWrapper }
+                onPress={ () => this.onSkip() }
+              >
+              {currentLanguage == "EN" ?
+                <View style={ styles.skipWrapper}>
+                  <Text style={ styles.textButton }>{language.skip[currentLanguage]}</Text>
+                  <Image source={ arrow } style={ styles.skipArrow } resizeMode="contain" />
+                </View>
+                : <View style={ styles.skipWrapper}>
+                  <Image source={ arrow_ar } style={ styles.skipArrow_ar } resizeMode="contain" />
+                  <Text style={ styles.textButton }>{language.skip[currentLanguage]}</Text>
+                </View>}
+              </TouchableOpacity>
             </View>
             <View style={ styles.switchContainer }>
               <TouchableOpacity
@@ -259,7 +281,7 @@ class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: screenHiehgt,
+    height: screenHeight,
   },
   video: {
     position: 'absolute',
@@ -344,6 +366,24 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginTop: 3,
   },
+  skipContainer: {
+    marginTop: 40,
+  },
+  skipWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  skipArrow: {
+    height: 15,
+    width: 15,
+    marginLeft: 5,
+  },
+  skipArrow_ar: {
+    height: 15,
+    width: 15,
+    marginRight: 5,
+  },
   switchContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -384,6 +424,6 @@ const styles = StyleSheet.create({
 });
 
 export default connect(state => ({
-  loginStatus: state.auth.loginStatus,
-  currentLanguage: state.auth.currentLanguage,
+  loading: state.login.loading,
+  currentLanguage: state.login.currentLanguage,
 }),{ logIn, changeLanguage })(Login);

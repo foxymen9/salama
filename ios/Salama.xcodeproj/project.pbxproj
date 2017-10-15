@@ -615,6 +615,7 @@
 				00E356EF1AD99517003FC87E /* SalamaTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				C8BC6AD002D448C297DBF112 /* Resources */,
+				B56CD65A1F93C13300251D2F /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -629,6 +630,16 @@
 				2D02E4901E0B4A5D006451C7 /* Salama-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B56CD65A1F93C13300251D2F /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				B9C8B534EFF54FDABCBD5AEA /* libRCTVideo.a */,
+				2B89960044714B3EBC0C9710 /* libRNVectorIcons.a */,
+				033ECDF40595423BA95744A3 /* libRNI18n.a */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		C8BC6AD002D448C297DBF112 /* Resources */ = {

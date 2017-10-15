@@ -1,4 +1,5 @@
 const language = {
+    /*login and signup page*/
     "username": {"EN": "Username", "AR": "اسم المستخدم"},
     "password": {"EN": "Password", "AR": "كلمة المرور"},
     "confirmPassword": {"EN": "Confirm Password", "AR": "تأكيد كلمة المرور"},
@@ -13,5 +14,7 @@ const language = {
     "email": {"EN": "Email", "AR": "البريد الإلكتروني"},
     "acceptPolicy": {"EN": "I accept the terms of the partner policy", "AR": "أوافق على بنود السياسة"},
     "createAccount": {"EN": "Create an account", "AR": "انشئ حساب"},
+    "pobox": {"EN": "POBOX", "AR": "POBOX"},
+    "skip": {"EN": "SKIP", "AR": "تخطي الدخول"},
 };
 export default language;

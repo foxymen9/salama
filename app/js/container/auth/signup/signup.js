@@ -23,8 +23,8 @@ import timer from 'react-native-timer';
 import Video from 'react-native-video';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as commonColors from '../../../styles/commonColors';
-import { screenWidth, screenHiehgt } from '../../../styles/commonStyles';
-import * as signUp from '../actions';
+import { screenWidth, screenHeight } from '../../../styles/commonStyles';
+import { signUp } from './actions';
 import language from '../../../utils/language/language';
 
 const background = require('../../../../assets/imgs/bg.gif');
@@ -42,12 +42,15 @@ const fullname_ar = require('../../../../assets/imgs/user_ar.png');
 const password_ar = require('../../../../assets/imgs/password_ar.png');
 const back = require('../../../../assets/imgs/back.png');
 const backvideo = require('../../../../assets/videos/background.mp4');
+const pobox = require('../../../../assets/imgs/mail.png');
+const pobox_ar = require('../../../../assets/imgs/mail_ar.png');
 
 class Signup extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      loading: false,
       fullname: '',
       mobilenumber: '',
       email: '',
@@ -56,7 +59,7 @@ class Signup extends Component {
       confirmPassword: '',
       communityCode: '',
       bShowConfirmPassword: true,
-      signingUp: false,
+      pobox: '',
       acceptPolicy: false,
     };
   }
@@ -64,6 +67,11 @@ class Signup extends Component {
   onSignUp() {
 
     Keyboard.dismiss();
+
+    if (!this.state.acceptPolicy) {
+      Alert.alert('Warning', 'Please accept the terms of the policy');
+      return;
+    }
 
     if (this.state.email == '') {
       Alert.alert('E-mail Required', 'Please enter your email address.');
@@ -75,7 +83,31 @@ class Signup extends Component {
       return;
     }
 
-    this.setState({ signingUp: true });
+    const signupData = {
+      FullName: this.state.fullname,
+      Email: this.state.email,
+      LoginDetail: {
+        UserName: this.state.username,
+        Password: this.state.password,
+      },
+      CustomerDetails: {
+        CustomerFirstName: this.state.fullname,
+        CustomerLastName: this.state.fullname,
+        CustomerEmail: this.state.email,
+        CustomerPhone: this.state.mobilenumber,
+        CustomerFax: "",
+        CustomerCompany: "",
+        CustomerAddress: {
+          AddressName: this.state.pobox,
+          AddressLine1: "",
+          AddressLine2: "",
+          AddressCity: "",
+          AddressZip: "",
+          AddressPhone: this.state.mobilenumber,
+        }
+      }
+    }
+    this.props.signUp(signupData);
   }
 
   onBack() {
@@ -87,7 +119,7 @@ class Signup extends Component {
 
     return (
       <View style={ styles.containers }>
-        <Spinner visible={ this.state.signingUp }/>
+        <Spinner visible={ this.state.loading }/>
         <Video
           source={ backvideo }
           rate={1.0}
@@ -158,8 +190,8 @@ class Signup extends Component {
                       style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
                       underlineColorAndroid="transparent"
                       returnKeyType={ 'next' }
-                      value={ this.state.email }
-                      keyboardType="phone-pad"
+                      value={ this.state.mobilenumber }
+                      keyboardType="numbers-and-punctuation"
                       onChangeText={ (text) => this.setState({ mobilenumber: text }) }
                       onSubmitEditing={ () => this.refs.email.focus() }
                     />
@@ -180,6 +212,24 @@ class Signup extends Component {
                       keyboardType="email-address"
                       value={ this.state.email }
                       onChangeText={ (text) => this.setState({ email: text }) }
+                      onSubmitEditing={ () => this.refs.pobox.focus() }
+                    />
+                  </Image>
+                </View>
+                <View style={ styles.inputWrapper }>
+                  <Image source={ currentLanguage == "EN" ? pobox : pobox_ar } style={ styles.textField } resizeMode="contain">
+                    <TextInput
+                      ref="pobox"
+                      autoCapitalize="none"
+                      autoCorrect={ false }
+                      placeholder={language.pobox[currentLanguage]}
+                      placeholderTextColor={ commonColors.placeholderText }
+                      textAlign={ currentLanguage=="EN" ? "left" : "right" }
+                      style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
+                      underlineColorAndroid="transparent"
+                      returnKeyType={ 'next' }
+                      value={ this.state.pobox }
+                      onChangeText={ (text) => this.setState({ pobox: text }) }
                       onSubmitEditing={ () => this.refs.password.focus() }
                     />
                   </Image>
@@ -410,6 +460,6 @@ const styles = StyleSheet.create({
 });
 
 export default connect(state => ({
-  signupStatus: state.auth.signupStatus,
-  currentLanguage: state.auth.currentLanguage,
+  loading: state.signup.loading,
+  currentLanguage: state.login.currentLanguage,
 }),{ signUp })(Signup);

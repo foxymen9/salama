@@ -1,12 +1,11 @@
 import * as types from './actionTypes';
 
 const initialState = {
-  loginStatus: null,
-  signupStatus: null,
+  loading: false,
   currentLanguage: 'EN',
 };
 
-export default function auth(state = initialState, action = {}) {
+export default function login(state = initialState, action = {}) {
   switch (action.type) {
     /************************/
     /* LogIn */
@@ -14,17 +13,17 @@ export default function auth(state = initialState, action = {}) {
     case types.LOGIN_REQUEST:
       return {
         ...state,
-        loginStatus: 'login_request',
+        loading: true,
       };
     case types.LOGIN_SUCCESS:
       return {
         ...state,
-        loginStatus: 'login_success',
+        loading: false,
       };
     case types.LOGIN_ERROR:
       return {
         ...state,
-        loginStatus: 'login_error',
+        loading: false,
       };
     /************************/
     /* Change Language(EN, AR) */
