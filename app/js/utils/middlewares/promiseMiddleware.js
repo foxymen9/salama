@@ -15,12 +15,11 @@ export default function promiseMiddleware(){
 
         return promise
             .then((result) => {
-                console.log('PPPPPPPPPPPP', result);
+                console.log('PPPPP', result);
                 return next({ ...rest, result, type: SUCCESS })})
             
             .catch((error) => {
-                console.log('QQQQQQQQQQQQQ', error);
-                // console.log('ERROR', error);
+                console.log('ERROR', error);
                 return next({ ...rest, error, type: FAILED })});
     };
 }

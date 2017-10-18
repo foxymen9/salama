@@ -27,10 +27,8 @@ import language from '../../utils/language/language';
 
 import Parent from '../parent';
 
-const background = require('../../../assets/imgs/bg.gif');
-const login = require('../../../assets/imgs/log.png');
-const signup = require('../../../assets/imgs/signin.png');
-
+const background = require('../../../assets/imgs/splash_screen/splash_screen.png');
+const button = require('../../../assets/imgs/splash_screen/Button.png');
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -43,8 +41,23 @@ class Main extends Component {
     const { currentLanguage } = this.props;
 
     return (
-      <Parent>
+      <Parent title="main">
+        <Image source={ background } style={ styles.background } />
         <View style={ styles.container } >
+          <View style={ styles.subContainer }>
+            <Text style={styles.title} >MANAGE YOUR INSURANCE PLAN</Text>
+            <Text style={styles.subTitle} >ANYTIME, ANYWHERE</Text>
+            <View style= { styles.buttonContainer }>
+              <TouchableOpacity
+                activeOpacity={ .5 }
+                onPress={ () => this.onLearnMore() }
+              >
+                <Image source={ button } style={ styles.btnLearn } resizeMode="cover">
+                  <Text style={ styles.textButton }>{language.learnMore[currentLanguage]}</Text>
+                </Image>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
       </Parent>
     );
@@ -52,12 +65,52 @@ class Main extends Component {
 }
 
 const styles = StyleSheet.create({
+  background: {
+    position: 'absolute',
+    top: navBarHeight + 2,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: screenWidth,
+    height: screenHeight - navBarHeight - 2,
+  },
   container: {
-    backgroundColor: '#fff',
     flex: 1,
     height: screenHeight - navBarHeight,
     width: screenWidth,
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
+  subContainer: {
+    paddingBottom: 80,
+  },
+  title: {
+    backgroundColor: 'transparent',
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#4C605E',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  subTitle: {
+    backgroundColor: 'transparent',
+    fontSize: 20,
+    color: '#4C605E',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  buttonContainer: {
+    alignItems: 'center',
+  },
+  btnLearn: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 40,
+  },
+  textButton: {
+    backgroundColor: 'transparent',
+    color: '#fff',
+  }
 });
 
 export default connect(state => ({

@@ -20,7 +20,7 @@ export default function signup(state = initialState, action = {}) {
         loading: false,
         ...state,
       };
-    case types.SIGNUP_ERROR:
+    case types.SIGNUP_FAILED:
       return {
         loading: false,
         ...state,

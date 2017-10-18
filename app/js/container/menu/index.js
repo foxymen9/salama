@@ -20,11 +20,20 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 import language from '../../utils/language/language';
+import { changeLanguage } from '../auth/login/actions';
 
 import { screenWidth, screenHeight } from '../../styles/commonStyles';
 import * as commonColors from '../../styles/commonColors';
 
-const arrow = require('../../../assets/imgs/login/arrow.png');
+const background = require('../../../assets/imgs/background.png');
+const arrow = require('../../../assets/imgs/menu/arrow_clicked.png');
+const i_about_us = require('../../../assets/imgs/menu/info.png');
+const i_claims = require('../../../assets/imgs/menu/claims.png');
+const i_members = require('../../../assets/imgs/menu/members.png');
+const i_board = require('../../../assets/imgs/menu/board.png');
+const i_international = require('../../../assets/imgs/menu/international.png');
+const i_language = require('../../../assets/imgs/menu/language.png');
+const i_contact_us = require('../../../assets/imgs/menu/phone.png');
 
 class Menu extends Component {
   constructor(props) {
@@ -43,59 +52,51 @@ class Menu extends Component {
 
   onItemSelect(data, rowID) {
     this.props.menuState();
-    /*const {currentLanguage, menuSelectedID, loggin } = this.props;
+    const {currentLanguage, menuSelectedID, loggin } = this.props;
 
-    if (rowID == menuSelectedID) {
-      //Hide menu when select the current page
-      this.props.menuState();
-      return;
-    }
+    // if (rowID == menuSelectedID) {
+    //   //Hide menu when select the current page
+    //   this.props.menuState();
+    //   return;
+    // }
     
     switch (rowID) {
-      case "0": //Home
-        this.props.saveMenuSelectedID(rowID);
-        Actions.Main();
+      case "0": //ABOUT US
+        // this.props.saveMenuSelectedID(rowID);
+        Actions.AboutUS({title: 'ABOUT US'});
         return;
-      case "1": //My Service
-        this.props.saveMenuSelectedID(rowID);
-        Actions.MyServices();
+      case "1": //MISSION & VISSION
+        Actions.MissionVission({title: 'OUR MISSION & VISSION'});
         return;
-      case "2": //Spepcial Services
-        this.props.saveMenuSelectedID(rowID);
-        Actions.Offers();
+      case "2": //CLAIMS
+        Actions.Claim({title: 'CLAIMS'});
         return;
-      case "3": //My Account
-        this.props.saveMenuSelectedID(rowID);
-        Actions.Profile();
+      case "3": //MEMBERS
         return;
-      case "4": //Support Ticket
-        this.props.saveMenuSelectedID(rowID);
-        Actions.Ticket();
+      case "4": //BOARD OF DIRECTORS
         return;
-      case "5": //Language
+      case "5": //INTERNATIONAL WORK
+        return;
+      case "6": //Language
         const lang = currentLanguage == 'EN' ? 'AR' : 'EN';
         this.props.changeLanguage(lang);
-        this.props.menuState();
         return;
-      case "6": //Vist site (nard.sa)
-        Linking.openURL("https://www.nard.sa");
-        this.props.menuState();
-        return;
-      case "7": //Log out
-        this.props.logout();
-        this.props.saveMenuSelectedID('null');
-        Actions.Login();
+      case "7": //CONTACT US
+        this.props.saveMenuSelectedID(rowID);
         return;
       default:
         return;
-    }*/
+    }
   }
 
  _renderRow (rowData, sectionID, rowID, highlightRow) {
     return (
       <TouchableOpacity onPress={()=>{highlightRow(sectionID, rowID); this.onItemSelect(rowData, rowID)}}>
         <View style={styles.listView}>
-          <Text  style={styles.listViewText}>{rowData}</Text>
+          <View style={styles.titleContainer} >
+            <Image source={ rowData.icon } style={ styles.titleIcon } resizeMode="contain" />
+            <Text  style={styles.listViewText}>{rowData.title}</Text>
+          </View>
           <Image source={ arrow } style={ styles.listArrow } resizeMode="contain" />
         </View>
       </TouchableOpacity>
@@ -105,19 +106,23 @@ class Menu extends Component {
       return (
         <View
           key={`${sectionID}-${rowID}`}
-          style={{ height: 1, backgroundColor: '#3A3A3A', flex:1}}
+          style={{ height: 1, backgroundColor: '#4C605E', flex:1, opacity: 0.5}}
         />
       );
   }
 
   render() {
     const {currentLanguage} = this.props;
-    let menuItems = [];
     
-    menuItems = [
-          "menu1",
-          "menu2",
-          "menu3"
+    let menuItems = [
+        {title: language.m_about_us[currentLanguage], icon: i_about_us},
+        {title: language.m_mission_vission[currentLanguage], icon: i_claims},
+        {title: language.m_claims[currentLanguage], icon: i_claims},
+        {title: language.m_members[currentLanguage], icon: i_members},
+        {title: language.m_borard[currentLanguage], icon: i_board},
+        {title: language.m_international[currentLanguage], icon: i_international},
+        {title: language.m_language[currentLanguage], icon: i_language},
+        {title: language.m_contact_us[currentLanguage], icon: i_contact_us}
     ];
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -125,6 +130,7 @@ class Menu extends Component {
 
     return (
       <View style={ styles.container } >
+        <Image source={ background } style={ styles.background } />
         <ListView
           dataSource={dataSource}
           renderRow={this._renderRow.bind(this)}
@@ -138,8 +144,18 @@ class Menu extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
-    height: screenHeight
+    height: screenHeight,
+    paddingVertical: 20,
+    zIndex: 0,
+  },
+  background: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: 280,
+    height: screenHeight,
   },
   listView: {
     height: 50,
@@ -148,14 +164,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+  titleContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  titleIcon: {
+    marginRight: 10,
+    width: 25,
+    height: 20,
+  },
   listViewText: {
+    backgroundColor: 'transparent',
     color: commonColors.title,
+    fontSize: 12,
   },
   listArrow: {
-    width: 15,
-    height: 15,
+    width: 40,
+    height: 30,
   }
 });
 
 export default connect(state => ({
-}),{ })(Menu);
+}),{ changeLanguage })(Menu);

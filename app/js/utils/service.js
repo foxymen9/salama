@@ -1,1 +1,1 @@
-export const api_url = "https://salamainsurance.com/SalamaWebAPI/Customer";
+export const api_url = "http://salamainsurance.com/SalamaWebAPI/Customer";

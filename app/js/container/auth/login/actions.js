@@ -1,9 +1,17 @@
 import * as types from './actionTypes';
+import axios from 'axios';
+import { api_url } from '../../../utils/service';
 
-export function logIn(data) {
-  alert(data.email);
+export function userLogin(data) {
   return {
-    type: [types.LOGIN_REQUEST, types.LOGIN_SUCCESS, types.LOGIN_ERROR]
+    types: [types.LOGIN_REQUEST, types.LOGIN_SUCCESS, types.LOGIN_FAILED],
+    promise:
+      axios({
+          method: 'post',
+          url: `${api_url}/Login`,
+          headers: {'Content-Type': 'application/json'},
+          data: data,
+      })
   };
 }
 

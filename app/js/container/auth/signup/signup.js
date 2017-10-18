@@ -18,7 +18,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
-import Spinner from 'react-native-loading-spinner-overlay';
+import OrientationLoadingOveraly from 'react-native-orientation-loading-overlay';
+
 import timer from 'react-native-timer';
 import Video from 'react-native-video';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -44,6 +45,8 @@ const back = require('../../../../assets/imgs/back.png');
 const backvideo = require('../../../../assets/videos/background.mp4');
 const pobox = require('../../../../assets/imgs/mail.png');
 const pobox_ar = require('../../../../assets/imgs/mail_ar.png');
+const zipcode_icon = require('../../../../assets/imgs/mail.png');
+const zipcode_icon_ar = require('../../../../assets/imgs/mail_ar.png');
 
 class Signup extends Component {
   constructor(props) {
@@ -51,15 +54,15 @@ class Signup extends Component {
 
     this.state = {
       loading: false,
-      fullname: '',
-      mobilenumber: '',
-      email: '',
-      username: '',
-      password: '',
-      confirmPassword: '',
-      communityCode: '',
+      fullname: 'test1',
+      mobilenumber: '12345',
+      email: 'test1@test1.com',
+      username: 'test1',
+      password: '12345',
+      confirmPassword: '12345',
       bShowConfirmPassword: true,
-      pobox: '',
+      pobox: 'test1',
+      zipcode: '12345',
       acceptPolicy: false,
     };
   }
@@ -84,34 +87,38 @@ class Signup extends Component {
     }
 
     const signupData = {
-      FullName: this.state.fullname,
-      Email: this.state.email,
-      LoginDetail: {
-        UserName: this.state.username,
-        Password: this.state.password,
-      },
-      CustomerDetails: {
-        CustomerFirstName: this.state.fullname,
-        CustomerLastName: this.state.fullname,
-        CustomerEmail: this.state.email,
-        CustomerPhone: this.state.mobilenumber,
-        CustomerFax: "",
-        CustomerCompany: "",
-        CustomerAddress: {
-          AddressName: this.state.pobox,
-          AddressLine1: "",
-          AddressLine2: "",
-          AddressCity: "",
-          AddressZip: "",
-          AddressPhone: this.state.mobilenumber,
+      data: {
+        FullName: this.state.fullname,
+        Email: this.state.email,
+        LoginDetail: {
+          UserName: this.state.username,
+          Password: this.state.password,
+        },
+        CustomerDetails: {
+          CustomerFirstName: this.state.fullname,
+          CustomerLastName: this.state.fullname,
+          CustomerEmail: this.state.email,
+          CustomerPhone: this.state.mobilenumber,
+          CustomerFax: "",
+          CustomerCompany: "",
+          CustomerAddress: {
+            AddressName: this.state.pobox,
+            AddressLine1: "",
+            AddressLine2: "",
+            AddressCity: "",
+            AddressZip: this.state.zipcode,
+            AddressPhone: "",
+            AddressPersonName: "",
+          }
         }
       }
     }
+    console.log('SIGNUP_DATA', signupData);
     this.props.signUp(signupData);
   }
 
   onBack() {
-    Actions.Login();
+    Actions.pop();
   }
 
   render() {
@@ -119,7 +126,7 @@ class Signup extends Component {
 
     return (
       <View style={ styles.containers }>
-        <Spinner visible={ this.state.loading }/>
+        <OrientationLoadingOveraly visible={ this.state.loading }/>
         <Video
           source={ backvideo }
           rate={1.0}
@@ -230,6 +237,24 @@ class Signup extends Component {
                       returnKeyType={ 'next' }
                       value={ this.state.pobox }
                       onChangeText={ (text) => this.setState({ pobox: text }) }
+                      onSubmitEditing={ () => this.refs.zipcode.focus() }
+                    />
+                  </Image>
+                </View>
+                <View style={ styles.inputWrapper }>
+                  <Image source={ currentLanguage == "EN" ? zipcode_icon : zipcode_icon_ar } style={ styles.textField } resizeMode="contain">
+                    <TextInput
+                      ref="zipcode"
+                      autoCapitalize="none"
+                      autoCorrect={ false }
+                      placeholder={language.zipcode[currentLanguage]}
+                      placeholderTextColor={ commonColors.placeholderText }
+                      textAlign={ currentLanguage=="EN" ? "left" : "right" }
+                      style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
+                      underlineColorAndroid="transparent"
+                      returnKeyType={ 'next' }
+                      value={ this.state.zipcode }
+                      onChangeText={ (text) => this.setState({ zipcode: text }) }
                       onSubmitEditing={ () => this.refs.password.focus() }
                     />
                   </Image>

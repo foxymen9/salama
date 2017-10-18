@@ -11,16 +11,19 @@ export default function login(state = initialState, action = {}) {
     /* LogIn */
     /************************/
     case types.LOGIN_REQUEST:
+    console.log('LOGIN_REQUEST');
       return {
         ...state,
         loading: true,
       };
     case types.LOGIN_SUCCESS:
+    console.log('LOGIN_DATA', action);
       return {
         ...state,
         loading: false,
       };
-    case types.LOGIN_ERROR:
+    case types.LOGIN_FAILED:
+    console.log('LOGIN_FAILED');
       return {
         ...state,
         loading: false,

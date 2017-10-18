@@ -27,7 +27,7 @@ import Video from 'react-native-video';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as commonColors from '../../../styles/commonColors';
 import { screenWidth, screenHeight } from '../../../styles/commonStyles';
-import { logIn, changeLanguage } from './actions';
+import { userLogin, changeLanguage } from './actions';
 import language from '../../../utils/language/language';
 
 const background = require('../../../../assets/imgs/bg.gif');
@@ -48,8 +48,8 @@ class Login extends Component {
     super(props);
 
     this.state = {
-      email: '',
-      password: '',
+      username: 'Vipintest1',
+      password: 'pass@1231',
       bShowConfirmPassword: true,
       rememberMe: false,
       loading: false,
@@ -65,10 +65,10 @@ class Login extends Component {
 
     Keyboard.dismiss();
 
-    const {email, password} = this.state;
+    const {username, password} = this.state;
 
-    if (email == '') {
-      Alert.alert('Please enter your email address.');
+    if (username == '') {
+      Alert.alert('Please enter your username.');
       return;
     }
 
@@ -77,7 +77,20 @@ class Login extends Component {
       return;
     }
 
-    this.props.logIn({ email: email, password: password });
+    const loginData = {
+      header: {
+        DeviceId: "",
+        Platform: "",
+        Token: ""
+      },
+      data: {
+        Username: username,
+        Password: password,
+      }
+    }
+    console.log('DATA', loginData);
+
+    this.props.userLogin(loginData);
   }
 
   onGoToWeb() {
@@ -141,8 +154,8 @@ class Login extends Component {
                   style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
                   underlineColorAndroid="transparent"
                   returnKeyType={ 'next' }
-                  value={ this.state.email }
-                  onChangeText={ (text) => this.setState({ email: text }) }
+                  value={ this.state.username }
+                  onChangeText={ (text) => this.setState({ username: text }) }
                   onSubmitEditing={ () => this.refs.password.focus() }
                 />
               </Image>
@@ -426,4 +439,4 @@ const styles = StyleSheet.create({
 export default connect(state => ({
   loading: state.login.loading,
   currentLanguage: state.login.currentLanguage,
-}),{ logIn, changeLanguage })(Login);
+}),{ userLogin, changeLanguage })(Login);
