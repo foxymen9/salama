@@ -60,7 +60,7 @@ class Parent extends Component {
               <View style={ styles.navBar } >
                 {title == "main" ?
                 <Image source={ logo } resizeMode="contain" style={ styles.logo } ></Image>
-                : <Text style={styles.logoText}>{title}</Text>}
+                : <Text style={styles.logoText}>{language[title][currentLanguage]}</Text>}
                 <TouchableOpacity
                   activeOpacity={ .5 }
                   style={ styles.menu }

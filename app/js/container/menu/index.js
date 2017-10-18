@@ -63,25 +63,25 @@ class Menu extends Component {
     switch (rowID) {
       case "0": //ABOUT US
         // this.props.saveMenuSelectedID(rowID);
-        Actions.AboutUS({title: 'ABOUT US'});
+        Actions.AboutUS({title: 'm_about_us'});
         return;
       case "1": //MISSION & VISSION
-        Actions.MissionVission({title: 'OUR MISSION & VISION'});
+        Actions.MissionVission({title: 'm_mission_vission'});
         return;
       case "2": //CLAIMS
-        Actions.Claim({title: 'CLAIMS'});
+        Actions.Claim({title: 'm_claims'});
         return;
       case "3": //BOARD OF DIRECTORS
-        Actions.Board({title: 'BOARD OF DIRECTORS'});
+        Actions.Board({title: 'm_borard'});
         return;
       case "4": //MEMBERS
-        Actions.Member({title: 'SALAMA MEMBERS'});
+        Actions.Member({title: 'm_members'});
         return;
       case "5": //INTERNATIONAL WORK
-        Actions.International({title: 'INTERNATIONAL WORK'});
+        Actions.International({title: 'm_international'});
         return;
       case "6": //CONTACT US
-        Actions.ContactUS({title: 'CONTACT US'});
+        Actions.ContactUS({title: 'm_contact_us'});
         return;
       case "7": //Language
         const lang = currentLanguage == 'EN' ? 'AR' : 'EN';
