@@ -22,3 +22,8 @@ export function changeLanguage(lang) {
   };
 }
 
+export function resetData() {
+  return {
+    type: types.RESET_LOGIN_DATA,
+  };
+}

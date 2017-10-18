@@ -25,7 +25,7 @@ import Video from 'react-native-video';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as commonColors from '../../../styles/commonColors';
 import { screenWidth, screenHeight } from '../../../styles/commonStyles';
-import { signUp } from './actions';
+import { signUp, resetData } from './actions';
 import language from '../../../utils/language/language';
 
 const background = require('../../../../assets/imgs/bg.gif');
@@ -54,17 +54,31 @@ class Signup extends Component {
 
     this.state = {
       loading: false,
-      fullname: 'test1',
-      mobilenumber: '12345',
-      email: 'test1@test1.com',
-      username: 'test1',
-      password: '12345',
-      confirmPassword: '12345',
+      fullname: '',
+      mobilenumber: '',
+      email: '',
+      username: '',
+      password: '',
+      confirmPassword: '',
       bShowConfirmPassword: true,
-      pobox: 'test1',
-      zipcode: '12345',
+      pobox: '',
+      zipcode: '',
       acceptPolicy: false,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {loading, signupResult} = nextProps;
+    
+    if (signupResult) {
+      if (signupResult.responseCode == 109) {
+        Alert.alert("SUCCESS", "Successfully registered");
+      }
+      else {
+        Alert.alert("Error", "Failed. Try again");
+        this.props.resetData();
+      }
+    }
   }
 
   onSignUp() {
@@ -113,7 +127,6 @@ class Signup extends Component {
         }
       }
     }
-    console.log('SIGNUP_DATA', signupData);
     this.props.signUp(signupData);
   }
 
@@ -126,7 +139,6 @@ class Signup extends Component {
 
     return (
       <View style={ styles.containers }>
-        <OrientationLoadingOveraly visible={ this.state.loading }/>
         <Video
           source={ backvideo }
           rate={1.0}
@@ -486,5 +498,7 @@ const styles = StyleSheet.create({
 
 export default connect(state => ({
   loading: state.signup.loading,
+  signupResult: state.signup.data,
+
   currentLanguage: state.login.currentLanguage,
-}),{ signUp })(Signup);
+}),{ signUp, resetData })(Signup);

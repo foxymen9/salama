@@ -21,12 +21,14 @@ import { Actions } from 'react-native-router-flux';
 
 import language from '../../utils/language/language';
 import { changeLanguage } from '../auth/login/actions';
+import { changeMenuState } from '../parent/actions';
 
 import { screenWidth, screenHeight } from '../../styles/commonStyles';
 import * as commonColors from '../../styles/commonColors';
 
 const background = require('../../../assets/imgs/background.png');
-const arrow = require('../../../assets/imgs/menu/arrow_clicked.png');
+const arrow_clicked = require('../../../assets/imgs/menu/arrow_clicked.png');
+const arrow_unclicked = require('../../../assets/imgs/menu/arrow_unclicked.png');
 const i_about_us = require('../../../assets/imgs/menu/info.png');
 const i_claims = require('../../../assets/imgs/menu/claims.png');
 const i_members = require('../../../assets/imgs/menu/members.png');
@@ -51,39 +53,45 @@ class Menu extends Component {
   }
 
   onItemSelect(data, rowID) {
-    this.props.menuState();
-    const {currentLanguage, menuSelectedID, loggin } = this.props;
+    const {currentLanguage, menuId } = this.props;
 
-    // if (rowID == menuSelectedID) {
-    //   //Hide menu when select the current page
-    //   this.props.menuState();
-    //   return;
-    // }
+    if (rowID == menuId) {
+      //Hide menu when select the current page
+      this.props.menuState();
+      return;
+    }
     
     switch (rowID) {
       case "0": //ABOUT US
-        // this.props.saveMenuSelectedID(rowID);
+        this.props.changeMenuState(rowID);
         Actions.AboutUS({title: 'm_about_us'});
         return;
       case "1": //MISSION & VISSION
+        this.props.changeMenuState(rowID);
         Actions.MissionVission({title: 'm_mission_vission'});
         return;
       case "2": //CLAIMS
+      this.props.changeMenuState(rowID);
         Actions.Claim({title: 'm_claims'});
         return;
       case "3": //BOARD OF DIRECTORS
+        this.props.changeMenuState(rowID);
         Actions.Board({title: 'm_borard'});
         return;
       case "4": //MEMBERS
+        this.props.changeMenuState(rowID);
         Actions.Member({title: 'm_members'});
         return;
       case "5": //INTERNATIONAL WORK
+        this.props.changeMenuState(rowID);
         Actions.International({title: 'm_international'});
         return;
       case "6": //CONTACT US
+        this.props.changeMenuState(rowID);
         Actions.ContactUS({title: 'm_contact_us'});
         return;
       case "7": //Language
+        this.props.menuState();
         const lang = currentLanguage == 'EN' ? 'AR' : 'EN';
         this.props.changeLanguage(lang);
         return;
@@ -93,6 +101,7 @@ class Menu extends Component {
   }
 
  _renderRow (rowData, sectionID, rowID, highlightRow) {
+    const {menuId } = this.props;
     return (
       <TouchableOpacity onPress={()=>{highlightRow(sectionID, rowID); this.onItemSelect(rowData, rowID)}}>
         <View style={styles.listView}>
@@ -100,7 +109,7 @@ class Menu extends Component {
             <Image source={ rowData.icon } style={ styles.titleIcon } resizeMode="contain" />
             <Text  style={styles.listViewText}>{rowData.title}</Text>
           </View>
-          <Image source={ arrow } style={ styles.listArrow } resizeMode="contain" />
+          <Image source={ rowID === menuId ? arrow_clicked : arrow_unclicked } style={ styles.listArrow } resizeMode="contain" />
         </View>
       </TouchableOpacity>
     )
@@ -119,7 +128,7 @@ class Menu extends Component {
     
     let menuItems = [
         {title: language.m_about_us[currentLanguage], icon: i_about_us},
-        {title: language.m_mission_vission[currentLanguage], icon: i_claims},
+        {title: language.m_mission_vission[currentLanguage], icon: i_international},
         {title: language.m_claims[currentLanguage], icon: i_claims},
         {title: language.m_borard[currentLanguage], icon: i_board},
         {title: language.m_members[currentLanguage], icon: i_members},
@@ -189,4 +198,5 @@ const styles = StyleSheet.create({
 });
 
 export default connect(state => ({
-}),{ changeLanguage })(Menu);
+  menuId: state.parent.data,
+}),{ changeLanguage, changeMenuState })(Menu);

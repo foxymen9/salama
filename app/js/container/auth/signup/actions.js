@@ -14,3 +14,9 @@ export function signUp(data) {
       })
   };
 }
+
+export function resetData() {
+  return {
+    type: types.RESET_SIGNUP_DATA,
+  };
+}

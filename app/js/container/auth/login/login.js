@@ -13,6 +13,7 @@ import {
   Alert,
   Keyboard,
   findNodeHandle,  
+  Linking,
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
@@ -27,7 +28,7 @@ import Video from 'react-native-video';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as commonColors from '../../../styles/commonColors';
 import { screenWidth, screenHeight } from '../../../styles/commonStyles';
-import { userLogin, changeLanguage } from './actions';
+import { userLogin, changeLanguage, resetData } from './actions';
 import language from '../../../utils/language/language';
 
 const background = require('../../../../assets/imgs/bg.gif');
@@ -48,8 +49,8 @@ class Login extends Component {
     super(props);
 
     this.state = {
-      username: 'Vipintest1',
-      password: 'pass@1231',
+      username: '',
+      password: '',
       bShowConfirmPassword: true,
       rememberMe: false,
       loading: false,
@@ -57,8 +58,24 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { loading } = nextProps;
+    const { loading, loginResult } = nextProps;
     this.setState({loading: loading});
+
+    if (loginResult) {
+      if (loginResult.ResponseCode == '109') {
+        Alert.alert("SUCCESS", "Successfully registered");
+        // Actions.Main();
+      }
+      else {
+        if (loginResult.ResponseCode == '604') {
+          Alert.alert("Error", loginResult.ResponseMessage);
+        }
+        else {
+          Alert.alert("Error", "Failed. Try again");
+        }
+        this.props.resetData();
+      }
+    }
   }
 
   onLogin() {
@@ -88,13 +105,12 @@ class Login extends Component {
         Password: password,
       }
     }
-    console.log('DATA', loginData);
 
     this.props.userLogin(loginData);
   }
 
   onGoToWeb() {
-    alert("onGoToWeb");
+    Linking.openURL("https://www.salama.com.sa");
   }
 
   onForgotPassword() {
@@ -127,7 +143,6 @@ class Login extends Component {
 
     return (
       <View style={ styles.container } >
-        <OrientationLoadingOveraly visible={ this.state.loading } />
         <Video
           source={ backvideo }
           rate={1.0}
@@ -438,5 +453,7 @@ const styles = StyleSheet.create({
 
 export default connect(state => ({
   loading: state.login.loading,
+  loginResult: state.login.data,
+
   currentLanguage: state.login.currentLanguage,
-}),{ userLogin, changeLanguage })(Login);
+}),{ userLogin, changeLanguage, resetData })(Login);

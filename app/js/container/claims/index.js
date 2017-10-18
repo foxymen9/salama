@@ -55,8 +55,7 @@ class Claims extends Component {
               <View style={styles.content}>
                 <Text style={styles.title} >MOTOR CLAIM</Text>
                 <Text style={styles.subTitle} >
-                  Salama Cooperative Insurance CO. "SALAMA". formerly known as Islamic Arab Insurance CO. "IAIC". is a part of SALAMA
-                  International Group which is a major player in the MENA region and is backed with SR. 2 Billions Paid Capital.
+                  Salama Cooperative Insurance Company - is a leading provider of Sharia’h compliant insurance solutions (Takaful).
                 </Text>
               </View>
             </View>
@@ -65,8 +64,8 @@ class Claims extends Component {
               <View style={styles.content}>
                 <Text style={styles.title} >MEDICAL CLAIM</Text>
                 <Text style={styles.subTitle} >
-                  Salama Cooperative Insurance CO. "SALAMA". formerly known as Islamic Arab Insurance CO. "IAIC". is a part of SALAMA
-                  International Group which is a major player in the MENA region and is backed with SR. 2 Billions Paid Capital.
+                  SALAMA offers comprehensive health insurance coverage that complies with Council of Cooperative Health Insurance (CCHI) requirements. 
+                  This service is offered through a network of approved healthcare providers who have high standard.
                 </Text>
               </View>
             </View>
@@ -76,8 +75,7 @@ class Claims extends Component {
               <View style={styles.content}>
                 <Text style={styles.title} >GENERAL CLAIM</Text>
                 <Text style={styles.subTitle} >
-                  Salama Cooperative Insurance CO. "SALAMA". formerly known as Islamic Arab Insurance CO. "IAIC". is a part of SALAMA
-                  International Group which is a major player in the MENA region and is backed with SR. 2 Billions Paid Capital.
+                  SALAMA is a leading provider of Sharia compliant General Insurance Products with a portfolio of more than 25 Property & Casualty Products.
                 </Text>
               </View>
             </View>
@@ -86,8 +84,7 @@ class Claims extends Component {
               <View style={styles.content}>
                 <Text style={styles.title} >TRAVEL CLAIM</Text>
                 <Text style={styles.subTitle} >
-                  Salama Cooperative Insurance CO. "SALAMA". formerly known as Islamic Arab Insurance CO. "IAIC". is a part of SALAMA
-                  International Group which is a major player in the MENA region and is backed with SR. 2 Billions Paid Capital.
+                  SALAMA Travel Care Insurance provides comprehensive travel insurance coverage to our valued corporate and individual clients on their overseas trips.
                 </Text>
               </View>
             </View>
@@ -96,8 +93,7 @@ class Claims extends Component {
               <View style={styles.content}>
                 <Text style={styles.title} >MALPRACTICE CLAIM:</Text>
                 <Text style={styles.subTitle} >
-                  Salama Cooperative Insurance CO. "SALAMA". formerly known as Islamic Arab Insurance CO. "IAIC". is a part of SALAMA
-                  International Group which is a major player in the MENA region and is backed with SR. 2 Billions Paid Capital.
+                  SALAMA offers Comprehensive Malpractice Insurance coverage. Malpractice insurance is mandatory in the kingdom of Saudi Arabia for all registered health practitioners, including (but limited to) physicians, dentists, nurses, therapists, optometrists, emergency medical technicians, surgical and non-surgical paramedical staff, as well as veterinarians.
                 </Text>
               </View>
             </View>

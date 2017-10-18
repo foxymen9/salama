@@ -3,6 +3,7 @@ import * as types from './actionTypes';
 const initialState = {
   loading: false,
   currentLanguage: 'EN',
+  data: null,
 };
 
 export default function login(state = initialState, action = {}) {
@@ -14,20 +15,25 @@ export default function login(state = initialState, action = {}) {
     console.log('LOGIN_REQUEST');
       return {
         ...state,
+        data: null,
         loading: true,
       };
     case types.LOGIN_SUCCESS:
-    console.log('LOGIN_DATA', action);
       return {
         ...state,
         loading: false,
+        data: action.result.data.response,
       };
     case types.LOGIN_FAILED:
-    console.log('LOGIN_FAILED');
       return {
         ...state,
         loading: false,
       };
+    case types.RESET_SIGNUP_DATA:
+      return {
+        ...state,
+        data: null,
+      }
     /************************/
     /* Change Language(EN, AR) */
     /************************/

@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 
 const initialState = {
+  data: null,
   loading: false,
 };
 
@@ -11,20 +12,26 @@ export default function signup(state = initialState, action = {}) {
     /************************/
     case types.SIGNUP_REQUEST:
       return {
-        loading: true,
         ...state,
+        data: null,
+        loading: true,
       };
     case types.SIGNUP_SUCCESS:
-    console.log('SIGNUP_DATA', action);
       return {
-        loading: false,
         ...state,
+        loading: false,
+        data: action.result.data.response,
       };
     case types.SIGNUP_FAILED:
       return {
-        loading: false,
         ...state,
+        loading: false,
       };
+    case types.RESET_SIGNUP_DATA:
+      return {
+        ...state,
+        data: null,
+      }
     default:
       return state;
   }

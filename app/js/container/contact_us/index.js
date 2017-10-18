@@ -13,6 +13,7 @@ import {
   Alert,
   Keyboard,
   findNodeHandle,  
+  Linking,
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
@@ -37,7 +38,17 @@ class ContactUS extends Component {
     super(props);
   }
 
-  onLearnMore() {
+  onSocial(index) {
+    switch (index) {
+      case 0:
+        return;
+      case 1:
+        return;
+      case 2:
+        return;
+      default: 
+        return;
+    }
   }
 
   render() {
@@ -73,9 +84,26 @@ class ContactUS extends Component {
               <Image source={ address_back } style={ styles.subbackground } resizeMode="contain" >
                 <View style={styles.titleContainer}>
                   <Text style={[styles.title, styles.titleSocial]}>Social</Text>
-                  <Text style={styles.subTitle}>FACEBOOK</Text>
-                  <Text style={styles.subTitle}>TWITTER</Text>
-                  <Text style={styles.subTitle}>LINKEDIN</Text>
+                  <View style={styles.socialContainer}>
+                    <TouchableOpacity
+                      activeOpacity={ .5 }
+                      onPress={ () => this.onSocial(0) }
+                    >
+                      <Text style={[styles.subTitle_ar, styles.social]}>FACEBOOK</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      activeOpacity={ .5 }
+                      onPress={ () => this.onSocial(1) }
+                    >
+                      <Text style={[styles.subTitle_ar, styles.social]}>TWITTER</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      activeOpacity={ .5 }
+                      onPress={ () => this.onSocial(2) }
+                    >
+                      <Text style={[styles.subTitle_ar, styles.social]}>LINKEDIN</Text>
+                    </TouchableOpacity>                    
+                  </View>
                 </View>
               </Image>
             </View>
@@ -108,9 +136,11 @@ class ContactUS extends Component {
               <Image source={ address_back } style={ styles.subbackground } resizeMode="contain" >
                 <View style={styles.titleContainer}>
                   <Text style={[styles.title_ar, styles.titleSocial]}>اجتماعي</Text>
-                  <Text style={styles.subTitle_ar}>FACEBOOK</Text>
-                  <Text style={styles.subTitle_ar}>TWITTER</Text>
-                  <Text style={styles.subTitle_ar}>LINKEDIN</Text>
+                  <View style={styles.socialContainer}>
+                    <Text style={[styles.subTitle_ar, styles.social]}>FACEBOOK</Text>
+                    <Text style={[styles.subTitle_ar, styles.social]}>TWITTER</Text>
+                    <Text style={[styles.subTitle_ar, styles.social]}>LINKEDIN</Text>
+                  </View>
                 </View>
               </Image>
             </View>
@@ -173,7 +203,7 @@ const styles = StyleSheet.create({
     color: '#777D51',
   },
   titleSocial: {
-    color: '#777D51',
+    color: '#0D5D66',
   },
   subTitle: {
     backgroundColor: 'transparent',
@@ -187,6 +217,16 @@ const styles = StyleSheet.create({
     color: '#333',
     textAlign: 'center',
   },
+  socialContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  social: {
+    marginHorizontal: 5,
+  }
 });
 
 export default connect(state => ({
