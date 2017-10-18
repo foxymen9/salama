@@ -28,7 +28,7 @@ import language from '../../utils/language/language';
 import Parent from '../parent';
 
 const background = require('../../../assets/imgs/about_us/background.png');
-const subbackground = require('../../../assets/imgs/about_us/about_us.png');
+const subbackground = require('../../../assets/imgs/mission_vission/mission_vission.png');
 
 class MissionVission extends Component {
   constructor(props) {
@@ -47,34 +47,73 @@ class MissionVission extends Component {
         <View style={ styles.container } >
           <Image source={ subbackground } style={ styles.subbackground } />
           <KeyboardAwareScrollView>
+            {currentLanguage == 'EN'?
             <View style={ styles.subContainer }>
               <View style={styles.content}>
-                <Text style={styles.title} >VISSION</Text>
+                <Text style={styles.title} >VISION</Text>
                 <Text style={styles.subTitle} >
-                  Salama Cooperative Insurance CO. "SALAMA". formerly known as Islamic Arab Insurance CO. "IAIC". is a part of SALAMA
-                  International Group which is a major player in the MENA region and is backed with SR. 2 Billions Paid Capital.
+                  To achieve global leadership in the cooperative insurance industry in market share and shareholders’ equity.
                 </Text>
               </View>
               <View style={styles.content}>
                 <Text style={styles.title} >MISSION</Text>
                 <Text style={styles.subTitle} >
-                  Salama Cooperative Insurance CO. "SALAMA". formerly known as Islamic Arab Insurance CO. "IAIC". is a part of SALAMA
-                  International Group which is a major player in the MENA region and is backed with SR. 2 Billions Paid Capital.
+                  To be the leading provider of innovative and customized insurance solutions backed by solid financial and human resources.
                 </Text>
               </View>
               <View style={styles.content}>
                 <Text style={styles.title} >VALUES</Text>
-                <Text style={styles.subTitle} >
-                  To achieve global leadership in the cooperateive insurance indusry in the following areas:
-                  <Text style={styles.subTitle} >- Market share</Text>
-                  <Text style={styles.subTitle} >- Market share</Text>
-                  <Text style={styles.subTitle} >- Market share</Text>
-                  <Text style={styles.subTitle} >- Market share</Text>
-                  <Text style={styles.subTitle} >- Market share</Text>
-                  <Text style={styles.subTitle} >- Market share</Text>
-                </Text>
+                <View style={styles.subTitleItems} >
+                  <Text style={styles.subTitle} >
+                    To achieve global leadership in the cooperative insurance industry in the following areas : 
+                  </Text>
+                  <Text style={styles.subTitle} >• Market share</Text>
+                  <Text style={styles.subTitle} >• Shareholders’ equity </Text>
+                  <Text style={styles.subTitle} >• Honest relations & trustworthy management </Text>
+                  <Text style={styles.subTitle} >• Dynamic, disciplined and outstanding performance </Text>
+                  <Text style={styles.subTitle} >• Transparency & Commitment to responsibilities </Text>
+                  <Text style={styles.subTitle} >• Exceeding Clients Expectations </Text>
+                  <Text style={styles.subTitle} >• Reporting Healthy Returns</Text>
+                </View>
               </View>
             </View>
+            :<View style={ styles.subContainer }>
+              <View style={styles.content}>
+                <Text style={styles.title_ar} >الرؤية</Text>
+                <View style={styles.subTitleItems} >
+                  <Text style={styles.subTitle_ar} >
+                    تحقيق الريادة العالمية في صناعة التأمين التعاوني من حيث :
+                  </Text>
+                  <Text style={styles.subTitle_ar} >
+                    •	الحصة السوقية
+                  </Text>
+                  <Text style={styles.subTitle_ar} >
+                    •	عوائد المساهمين
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.content}>
+                <Text style={styles.title_ar} >الرسالة</Text>
+                <Text style={styles.subTitle_ar} >
+                  لنكون الجهة الرائدة في تقديم حلول تأمينية مبتكرة ومتخصصة تستند على موارد مالية وبشرية قوية
+                </Text>
+              </View>
+              <View style={styles.content}>
+                <Text style={styles.title_ar} >القيم</Text>
+                <View style={styles.subTitleItems} >
+                  <Text style={styles.subTitle_ar} >
+                    لتحقيق القيادة العالمية في صناعة التأمين التعاوني من حيث : 
+                  </Text>
+                  <Text style={styles.subTitle_ar} >•	شراكة نزيهة وإدارة جديرة بالثقة</Text>
+                  <Text style={styles.subTitle_ar} >•	شراكة نزيهة وإدارة جديرة بالثقة</Text>
+                  <Text style={styles.subTitle_ar} >•	الشفافية والالتزام بالمسؤوليات </Text>
+                  <Text style={styles.subTitle_ar} >•	تجاوز التوقعات </Text>
+                  <Text style={styles.subTitle_ar} >•	تحقيق عوائد مجزية </Text>
+                  <Text style={styles.subTitle_ar} >•	تجاوز التوقعات</Text>
+                  <Text style={styles.subTitle_ar} >•	تحقيق عوائد مجزية</Text>
+                </View>
+              </View>
+            </View>}
           </KeyboardAwareScrollView>
         </View>
       </Parent>
@@ -120,11 +159,30 @@ const styles = StyleSheet.create({
     color: '#333',
     marginBottom: 5,
   },
+  title_ar: {
+    backgroundColor: 'transparent',
+    fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'right',
+    color: '#333',
+    marginBottom: 5,
+  },
+  subTitleItems: {
+    backgroundColor: 'transparent',
+    display: 'flex',
+    flexDirection: 'column',
+  },
   subTitle: {
     backgroundColor: 'transparent',
     fontSize: 13,
     color: '#333',
     textAlign: 'left',
+  },
+  subTitle_ar: {
+    backgroundColor: 'transparent',
+    fontSize: 13,
+    color: '#333',
+    textAlign: 'right',
   },
 });
 

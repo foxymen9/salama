@@ -66,23 +66,26 @@ class Menu extends Component {
         Actions.AboutUS({title: 'ABOUT US'});
         return;
       case "1": //MISSION & VISSION
-        Actions.MissionVission({title: 'OUR MISSION & VISSION'});
+        Actions.MissionVission({title: 'OUR MISSION & VISION'});
         return;
       case "2": //CLAIMS
         Actions.Claim({title: 'CLAIMS'});
         return;
-      case "3": //MEMBERS
+      case "3": //BOARD OF DIRECTORS
+        Actions.Board({title: 'BOARD OF DIRECTORS'});
         return;
-      case "4": //BOARD OF DIRECTORS
+      case "4": //MEMBERS
+        Actions.Member({title: 'SALAMA MEMBERS'});
         return;
       case "5": //INTERNATIONAL WORK
+        Actions.International({title: 'INTERNATIONAL WORK'});
         return;
-      case "6": //Language
+      case "6": //CONTACT US
+        Actions.ContactUS({title: 'CONTACT US'});
+        return;
+      case "7": //Language
         const lang = currentLanguage == 'EN' ? 'AR' : 'EN';
         this.props.changeLanguage(lang);
-        return;
-      case "7": //CONTACT US
-        this.props.saveMenuSelectedID(rowID);
         return;
       default:
         return;
@@ -118,11 +121,11 @@ class Menu extends Component {
         {title: language.m_about_us[currentLanguage], icon: i_about_us},
         {title: language.m_mission_vission[currentLanguage], icon: i_claims},
         {title: language.m_claims[currentLanguage], icon: i_claims},
-        {title: language.m_members[currentLanguage], icon: i_members},
         {title: language.m_borard[currentLanguage], icon: i_board},
+        {title: language.m_members[currentLanguage], icon: i_members},
         {title: language.m_international[currentLanguage], icon: i_international},
+        {title: language.m_contact_us[currentLanguage], icon: i_contact_us},
         {title: language.m_language[currentLanguage], icon: i_language},
-        {title: language.m_contact_us[currentLanguage], icon: i_contact_us}
     ];
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});

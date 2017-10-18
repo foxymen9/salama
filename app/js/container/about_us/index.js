@@ -46,11 +46,12 @@ class AboutUS extends Component {
         <View style={ styles.container } >
           <Image source={ subbackground } style={ styles.subbackground } />
           <KeyboardAwareScrollView>
+            {currentLanguage == 'EN' ?
             <View style={ styles.subContainer }>
               <View style={styles.content}>
                 <Text style={styles.subTitle} >
-                  Salama Cooperative Insurance CO. "SALAMA". formerly known as Islamic Arab Insurance CO. "IAIC". is a part of SALAMA
-                  International Group which is a major player in the MENA region and is backed with SR. 2 Billions Paid Capital.
+                  Salama Cooperative Insurance Co. “SALAMA”, formerly known as Islamic Arab Insurance Co. 
+                  “IAIC”, is a part of SALAMA International Group which is a major player in the MENA region and is backed with SR. 2 Billions Paid Capital.
                 </Text>
               </View>
               <View style={styles.content}>
@@ -62,22 +63,52 @@ class AboutUS extends Component {
                   - Kingdom of Saudi Arabia
                 </Text>
                 <Text style={styles.subTitle} >
-                  - Senegal
+                  - Bahrain - Algeria
                 </Text>
                 <Text style={styles.subTitle} >
-                  -Malaysia
+                  - Senegal - malaysia
                 </Text>
                 <Text style={styles.subTitle} >
-                  -Egypt
+                  - Egypt
                 </Text>
               </View>
               <View style={styles.content}>
                 <Text style={styles.subTitle} >
-                  Salama Cooperative Insurance CO. "SALAMA". formerly known as Islamic Arab Insurance CO. "IAIC". is a part of SALAMA
-                  International Group which is a major player in the MENA region and is backed with SR. 2 Billions Paid Capital.
+                  We started our Insurance Operations in Saudi Arabia in 1979 and was approved as a Public Listed Company in the Kingdom after the release of the Royal Decree in 2006. 
+                  With more than 35 years of experience, SALAMA is considered one of the leading Insurance Companies in the Saudi Market and the whole region.
                 </Text>
               </View>
             </View>
+            :<View style={ styles.subContainer }>
+              <View style={styles.content}>
+                <Text style={styles.subTitle_ar} >
+                  شركة سلامة للتأمين التعاوني "سلامة -" والمعروفة سابقًا باسم /شركة إياك السعودية للتأمين التعاوني - هي جزء من مجموعة سلامة الدولية، التي تعتبر أحد المجموعات الرائدة في منطقة الشرق الأوسط وشمال أفريقيا في مجال التأمين، حيث يُقدر رأس مال المجموعة بحوالي ٢ مليار ريال سعودي.
+                </Text>
+              </View>
+              <View style={styles.content}>
+                <Text style={styles.title_ar} >يمتد نشاط المجموعة ليغطي عدة أسواق في كلٍ من :</Text>
+                <Text style={styles.subTitle_ar} >
+                  - الإمارات العربية المتحدة
+                </Text>
+                <Text style={styles.subTitle_ar} >
+                  - المملكة العربية السعودية 
+                </Text>
+                <Text style={styles.subTitle_ar} >
+                 - الجزائر - السنغال 
+                </Text>
+                <Text style={styles.subTitle_ar} >
+                 - ماليزيا – البحرين
+                </Text>
+                <Text style={styles.subTitle_ar} >
+                  - مصر
+                </Text>
+              </View>
+              <View style={styles.content}>
+                <Text style={styles.subTitle_ar} >
+                  وقد بدأت الشركة في تقديم خدماتها التأمينية في المملكة العربية السعودية منذ عام ١٩٧٩ ، وقد تم اعتمادها كشركة مساهمة في المملكة. بموجب مرسوم ملكي في عام ٢٠٠٦ ونظرًا لما تتمتع به من خبرة تمتد لأكثر من ٣٥ عامًا، فإن شركة سلامة تعتبر إحدى شركات التأمين الرائدة في السوق السعودي والمنطقة بالكامل
+                </Text>
+              </View>
+            </View>}
           </KeyboardAwareScrollView>
         </View>
       </Parent>
@@ -122,11 +153,24 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: '#333',
   },
+  title_ar: {
+    backgroundColor: 'transparent',
+    fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'right',
+    color: '#333',
+  },
   subTitle: {
     backgroundColor: 'transparent',
     fontSize: 13,
     color: '#333',
     textAlign: 'left',
+  },
+  subTitle_ar: {
+    backgroundColor: 'transparent',
+    fontSize: 13,
+    color: '#333',
+    textAlign: 'right',
   },
 });
 

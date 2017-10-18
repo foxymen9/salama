@@ -21,6 +21,10 @@ import Main from './container/main';
 import AboutUS from './container/about_us';
 import Claim from './container/claims';
 import MissionVission from './container/mission_vission';
+import ContactUS from './container/contact_us';
+import Board from './container/board';
+import Member from './container/member';
+import International from './container/international';
 
 export default class App extends Component {
   constructor(props) {
@@ -36,12 +40,16 @@ export default class App extends Component {
   render() {
     const scenes = Actions.create(
       <Scene key="root">
-        <Scene key="Login" component={ Login } hideNavBar={ true } panHandlers={null}/>
+        <Scene key="Login" component={ Login } hideNavBar={ true } panHandlers={null}  initial={ true } />
         <Scene key="Signup" component={ Signup }  hideNavBar={ true } panHandlers={null}/>
-        <Scene key="Main" component={ Main } initial={ true }  hideNavBar={ true } panHandlers={null}/>
+        <Scene key="Main" component={ Main }  hideNavBar={ true } panHandlers={null}/>
         <Scene key="AboutUS" component={ AboutUS }  hideNavBar={ true } panHandlers={null}/>
         <Scene key="MissionVission" component={ MissionVission } hideNavBar={ true } panHandlers={null}/>
         <Scene key="Claim" component={ Claim } hideNavBar={ true } panHandlers={null}/>
+        <Scene key="ContactUS" component={ ContactUS } hideNavBar={ true } panHandlers={null}/>
+        <Scene key="Board" component={ Board } hideNavBar={ true } panHandlers={null}/>
+        <Scene key="Member" component={ Member } hideNavBar={ true } panHandlers={null}/>
+        <Scene key="International" component={ International } hideNavBar={ true } panHandlers={null}/>
       </Scene>
     );
 

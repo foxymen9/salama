@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    fontSize: 22,
+    fontSize: 20,
+    color: '#333',
     marginTop: 8,
   },
   menu: {
