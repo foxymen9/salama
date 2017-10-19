@@ -58,59 +58,59 @@ class ContactUS extends Component {
       <Parent title={title}>
         <Image source={ background } style={ styles.background } />
         {currentLanguage == 'EN' ?
-        <View style={ styles.container } >
-          <KeyboardAwareScrollView>
-            <View style={ styles.subContainer }>
-              <Image source={ address_back } style={ styles.subbackground } resizeMode="contain">
-                <View style={styles.titleContainer}>
-                  <Text style={[styles.title, styles.titleAddress]}>Our Address</Text>
-                  <Text style={styles.subTitle}>
-                    Bin Homran Center, Prince
-                    Mohamad Bin Abdul Aziz St. – Office 210A, 207A, 506A, 510A.</Text>
-                </View>
-              </Image>
-            </View>
-            <View style={ styles.subContainer }>
-              <Image source={ email_back } style={ styles.subbackground } resizeMode="contain" >
-                <View style={styles.titleContainer}>
-                  <Text style={[styles.title, styles.titleEmail]}>Phone & E-mail</Text>
-                  <Text style={styles.subTitle}>+966 12 6647877</Text>
-                  <Text style={styles.subTitle}>+966 12 6647387</Text>
-                  <Text style={styles.subTitle}>info@salama.com.sa</Text>
-                </View>
-              </Image>
-            </View>
-            <View style={ styles.subContainer }>
-              <Image source={ address_back } style={ styles.subbackground } resizeMode="contain" >
-                <View style={styles.titleContainer}>
-                  <Text style={[styles.title, styles.titleSocial]}>Social</Text>
-                  <View style={styles.socialContainer}>
-                    <TouchableOpacity
-                      activeOpacity={ .5 }
-                      onPress={ () => this.onSocial(0) }
-                    >
-                      <Text style={[styles.subTitle_ar, styles.social]}>FACEBOOK</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      activeOpacity={ .5 }
-                      onPress={ () => this.onSocial(1) }
-                    >
-                      <Text style={[styles.subTitle_ar, styles.social]}>TWITTER</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      activeOpacity={ .5 }
-                      onPress={ () => this.onSocial(2) }
-                    >
-                      <Text style={[styles.subTitle_ar, styles.social]}>LINKEDIN</Text>
-                    </TouchableOpacity>                    
+        <KeyboardAwareScrollView>
+          <View style={ styles.container } >
+              <View style={ styles.subContainer }>
+                <Image source={ address_back } style={ styles.subbackground } resizeMode="contain">
+                  <View style={styles.titleContainer}>
+                    <Text style={[styles.title, styles.titleAddress]}>Our Address</Text>
+                    <Text style={styles.subTitle}>
+                      Bin Homran Center, Prince
+                      Mohamad Bin Abdul Aziz St. – Office 210A, 207A, 506A, 510A.</Text>
                   </View>
-                </View>
-              </Image>
-            </View>
-          </KeyboardAwareScrollView>
-        </View>
-        :<View style={ styles.container } >
-          <KeyboardAwareScrollView>
+                </Image>
+              </View>
+              <View style={ styles.subContainer }>
+                <Image source={ email_back } style={ styles.subbackground } resizeMode="contain" >
+                  <View style={styles.titleContainer}>
+                    <Text style={[styles.title, styles.titleEmail]}>Phone & E-mail</Text>
+                    <Text style={styles.subTitle}>+966 12 6647877</Text>
+                    <Text style={styles.subTitle}>+966 12 6647387</Text>
+                    <Text style={styles.subTitle}>info@salama.com.sa</Text>
+                  </View>
+                </Image>
+              </View>
+              <View style={ styles.subContainer }>
+                <Image source={ address_back } style={ styles.subbackground } resizeMode="contain" >
+                  <View style={styles.titleContainer}>
+                    <Text style={[styles.title, styles.titleSocial]}>Social</Text>
+                    <View style={styles.socialContainer}>
+                      <TouchableOpacity
+                        activeOpacity={ .5 }
+                        onPress={ () => this.onSocial(0) }
+                      >
+                        <Text style={[styles.subTitle_ar, styles.social]}>FACEBOOK</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        activeOpacity={ .5 }
+                        onPress={ () => this.onSocial(1) }
+                      >
+                        <Text style={[styles.subTitle_ar, styles.social]}>TWITTER</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        activeOpacity={ .5 }
+                        onPress={ () => this.onSocial(2) }
+                      >
+                        <Text style={[styles.subTitle_ar, styles.social]}>LINKEDIN</Text>
+                      </TouchableOpacity>                    
+                    </View>
+                  </View>
+                </Image>
+              </View>
+          </View>
+        </KeyboardAwareScrollView>
+        :<KeyboardAwareScrollView>
+          <View style={ styles.container } >
             <View style={ styles.subContainer }>
               <Image source={ address_back } style={ styles.subbackground } resizeMode="contain">
                 <View style={styles.titleContainer}>
@@ -144,8 +144,8 @@ class ContactUS extends Component {
                 </View>
               </Image>
             </View>
-          </KeyboardAwareScrollView>
-        </View>}
+          </View>
+        </KeyboardAwareScrollView>}
       </Parent>
     );
   }
