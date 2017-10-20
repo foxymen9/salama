@@ -43,9 +43,9 @@ const password_ar = require('../../../../assets/imgs/password_ar.png');
 const back = require('../../../../assets/imgs/back.png');
 const backvideo = require('../../../../assets/videos/background.mp4');
 const pobox = require('../../../../assets/imgs/pobox.png');
-const pobox_ar = require('../../../../assets/imgs/pobox.png');
+const pobox_ar = require('../../../../assets/imgs/pobox_ar.png');
 const zipcode_icon = require('../../../../assets/imgs/zipcode.png');
-const zipcode_icon_ar = require('../../../../assets/imgs/zipcode.png');
+const zipcode_icon_ar = require('../../../../assets/imgs/zipcode_ar.png');
 
 class Signup extends Component {
   constructor(props) {

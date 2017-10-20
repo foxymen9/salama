@@ -152,10 +152,11 @@ class Login extends Component {
           repeat
           style={styles.video}
         />
-        
-          <View style={ styles.container } >
+        <View style={styles.scrollContainer}>
+        <KeyboardAwareScrollView>
+          <View style={styles.scrollSubContainer}>
             <View style={ styles.descriptionContainer }>
-              <Image source={ logo } style={ styles.logo } resizeMode="center"/>
+              <Image source={ logo } style={ styles.logo } resizeMode="contain"/>
             </View>
             <View style= { styles.inputContainer }>
               <Image source={ currentLanguage == "EN" ? username : username_ar } style={ styles.buttonLogin } resizeMode="contain">
@@ -191,54 +192,55 @@ class Login extends Component {
                   onSubmitEditing={ () => this.onLogin() }
                 />
               </Image>
-              {currentLanguage == "EN" ?
-              <View style={ styles.textWrapper }>
-                <CheckBox 
-                    style={{flex: 1}}
-                    rightTextStyle={{fontSize: 12}}
-                    onClick={ ()=>this.onRememberMe() } 
-                    isChecked={ this.state.rememberMe } 
-                    rightText={language.rememberMe[currentLanguage]}
-                  />
-                <TouchableOpacity
-                  activeOpacity={ .5 }
-                  onPress={ () => this.onForgotPassword() }
-                >
-                  <Text style={ styles.textForgotPassword }>{language.forgotPassword[currentLanguage]}</Text>
-                </TouchableOpacity>
-              </View>
-              :
-              <View style={ styles.textWrapper }>
-                <TouchableOpacity
-                  activeOpacity={ .5 }
-                  onPress={ () => this.onForgotPassword() }
-                >
-                  <Text style={ styles.textForgotPassword }>{language.forgotPassword[currentLanguage]}</Text>
-                </TouchableOpacity>
-                <CheckBox 
+            </View>
+            {currentLanguage == "EN" ?
+            <View style={ styles.ForgotPasswordContainer }>
+              <CheckBox 
                   style={{flex: 1}}
-                  rightTextStyle={{fontSize: 12, paddingRight: 10}}
+                  rightTextStyle={{fontSize: 12}}
                   onClick={ ()=>this.onRememberMe() } 
                   isChecked={ this.state.rememberMe } 
-                  leftText={language.rememberMe[currentLanguage]}
+                  rightText={language.rememberMe[currentLanguage]}
                 />
-              </View>
-              }
+              <TouchableOpacity
+                activeOpacity={ .5 }
+                onPress={ () => this.onForgotPassword() }
+              >
+                <Text style={ styles.textForgotPassword }>{language.forgotPassword[currentLanguage]}</Text>
+              </TouchableOpacity>
+            </View>
+            :
+            <View style={ styles.ForgotPasswordContainer }>
+              <TouchableOpacity
+                activeOpacity={ .5 }
+                onPress={ () => this.onForgotPassword() }
+              >
+                <Text style={ styles.textForgotPassword }>{language.forgotPassword[currentLanguage]}</Text>
+              </TouchableOpacity>
+              <CheckBox 
+                style={{flex: 1}}
+                rightTextStyle={{fontSize: 12, paddingRight: 10}}
+                onClick={ ()=>this.onRememberMe() } 
+                isChecked={ this.state.rememberMe } 
+                leftText={language.rememberMe[currentLanguage]}
+              />
+            </View>
+            }
+            <View style={ styles.loginButtonWrapper }> 
               <TouchableOpacity
                 activeOpacity={ .5 }
                 onPress={ () => this.onLogin() }
               >
-                <Image source={ login } style={ styles.buttonLogin } resizeMode="cover">
+                <Image source={ login } style={ styles.buttonLogin } resizeMode="contain">
                   <Text style={ styles.textButton }>{language.login[currentLanguage]}</Text>
                 </Image>
               </TouchableOpacity>
 
               <TouchableOpacity
                 activeOpacity={ .5 }
-                style={ styles.loginButtonWrapper }
                 onPress={ () => this.onSignUp() }
               >
-                <Image source={ signup } style={ styles.buttonLogin } resizeMode="cover">
+                <Image source={ signup } style={ styles.buttonLogin } resizeMode="contain">
                   <Text style={ styles.textButton }>{language.signup[currentLanguage]}</Text>
                 </Image>
               </TouchableOpacity>
@@ -246,16 +248,15 @@ class Login extends Component {
             <View style={ styles.skipContainer }>
               <TouchableOpacity
                 activeOpacity={ .5 }
-                style={ styles.loginButtonWrapper }
                 onPress={ () => this.onSkip() }
               >
-              {currentLanguage == "EN" ?
+                {currentLanguage == "EN" ?
                 <View style={ styles.skipWrapper}>
                   <Text style={ styles.textButton }>{language.skip[currentLanguage]}</Text>
-                  <Image source={ arrow } style={ styles.skipArrow } resizeMode="contain" />
+                  <Image source={ arrow } style={ styles.skipArrow } resizeMode="cover" />
                 </View>
                 : <View style={ styles.skipWrapper}>
-                  <Image source={ arrow_ar } style={ styles.skipArrow_ar } resizeMode="contain" />
+                  <Image source={ arrow_ar } style={ styles.skipArrow_ar } resizeMode="cover" />
                   <Text style={ styles.textButton }>{language.skip[currentLanguage]}</Text>
                 </View>}
               </TouchableOpacity>
@@ -279,16 +280,18 @@ class Login extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={ styles.bottomContainer }>
-            <TouchableOpacity
-              activeOpacity={ .5 }
-              onPress={ () => this.onGoToWeb() }
-            >
-              <Image source={ web } style={ styles.buttonWeb } resizeMode="cover">
-                <Text style={ styles.textButton }>{language.gotoMainWebsite[currentLanguage]}</Text>
-              </Image>
-            </TouchableOpacity>
-          </View>
+        </KeyboardAwareScrollView>
+        </View>
+        <View style={ styles.bottomContainer }>
+          <TouchableOpacity
+            activeOpacity={ .5 }
+            onPress={ () => this.onGoToWeb() }
+          >
+            <Image source={ web } style={ styles.buttonWeb } resizeMode="cover">
+              <Text style={ styles.textButton }>{language.gotoMainWebsite[currentLanguage]}</Text>
+            </Image>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -298,6 +301,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: screenHeight,
+    justifyContent: 'space-between',
   },
   video: {
     position: 'absolute',
@@ -306,19 +310,26 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
   },
+
+  scrollContainer: {
+    height: screenHeight - 40,
+  },
+  scrollSubContainer: {
+    justifyContent: 'space-between',
+  },
+
   descriptionContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 20,
   },
   logo: {
     width: screenWidth * 0.5,
-    height: screenWidth * 0.5,
+    marginVertical: 20,
   },
+
   inputContainer: {
-    flex: 1,
-    marginTop: 40,
+    width: screenWidth,
+    paddingHorizontal: screenWidth * 0.1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -327,34 +338,24 @@ const styles = StyleSheet.create({
     color: commonColors.title,
     height: 45,
     alignSelf: 'stretch',
-    marginLeft: 45,
+    marginLeft: 40,
   },
   input_ar: {
     fontSize: 12,
     color: commonColors.title,
     height: 45,
     alignSelf: 'stretch',
-    marginRight: 45,
+    marginRight: 40,
   },
-  loginButtonWrapper: {
-    marginTop: 16,
-    alignSelf: 'stretch',
-    alignItems: 'center',
-  },
-  textWrapper: {
-    marginTop: 16,
-    marginBottom: 16,
+  
+  ForgotPasswordContainer: {
     flexDirection: 'row',
-    width: screenWidth * 0.8,
+    width: screenWidth,
+    paddingHorizontal: screenWidth * 0.1,
     justifyContent: 'space-between',
+    marginVertical: 15,
   },
-  buttonLogin: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 40,
-    height: 40,
-    width: screenWidth * 0.8,
-  },
+
   textForgotPasswordAr: {
     color: commonColors.placeholderText,
     fontSize: 12,
@@ -372,11 +373,25 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginTop: 5,
   },
+
+  loginButtonWrapper: {
+    alignItems: 'center',
+    width: screenWidth,
+    paddingHorizontal: screenWidth * 0.1,
+  },
+  buttonLogin: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 15,
+  },
+
   skipContainer: {
-    marginTop: 50,
+    width: screenWidth,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 20,
   },
   skipWrapper: {
-    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -390,11 +405,11 @@ const styles = StyleSheet.create({
     width: 15,
     marginRight: 5,
   },
+
   switchContainer: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 30,
+    alignItems: 'flex-start',
   },
   switchENG: {
     width: screenWidth * 0.15,
@@ -408,10 +423,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 2
   },
+
   bottomContainer: {
     position: 'absolute',
-    flex: 1,
-    justifyContent: 'flex-start',
     bottom: 0,
   },
   buttonWeb: {
