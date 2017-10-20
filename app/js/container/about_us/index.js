@@ -12,7 +12,9 @@ import {
   TouchableOpacity,
   Alert,
   Keyboard,
-  findNodeHandle,  
+  findNodeHandle, 
+  Platform,
+  BackHandler, 
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
@@ -32,6 +34,24 @@ const subbackground = require('../../../assets/imgs/about_us/about_us.png');
 class AboutUS extends Component {
   constructor(props) {
     super(props);
+    this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
+  }
+
+  componentWillMount() {
+    if (Platform.OS === "android") {
+      BackHandler.addEventListener("hardwareBackPress", this.handleBackButtonClick);
+    }
+  }
+
+  componentWillUnmount() {
+    if (Platform.OS === "android") {
+      BackHandler.removeEventListener("hardwareBackPress", this.handleBackButtonClick);
+    }
+  }
+
+  handleBackButtonClick() {
+    Actions.Main();
+    return true;
   }
 
   onLearnMore() {

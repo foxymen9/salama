@@ -12,7 +12,9 @@ import {
   TouchableOpacity,
   Alert,
   Keyboard,
-  findNodeHandle,  
+  findNodeHandle,
+  Platform,
+  BackHandler,  
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
@@ -38,6 +40,24 @@ const img6 = require('../../../assets/imgs/international/best.png');
 class International extends Component {
   constructor(props) {
     super(props);
+    this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
+  }
+
+  componentWillMount() {
+    if (Platform.OS === "android") {
+      BackHandler.addEventListener("hardwareBackPress", this.handleBackButtonClick);
+    }
+  }
+
+  componentWillUnmount() {
+    if (Platform.OS === "android") {
+      BackHandler.removeEventListener("hardwareBackPress", this.handleBackButtonClick);
+    }
+  }
+
+  handleBackButtonClick() {
+    Actions.Main();
+    return true;
   }
 
   render() {

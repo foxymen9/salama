@@ -36,6 +36,9 @@ const i_board = require('../../../assets/imgs/menu/board.png');
 const i_international = require('../../../assets/imgs/menu/international.png');
 const i_language = require('../../../assets/imgs/menu/language.png');
 const i_contact_us = require('../../../assets/imgs/menu/phone.png');
+const i_home = require('../../../assets/imgs/menu/home.png');
+const i_mission = require('../../../assets/imgs/menu/vision.png');
+const i_logout = require('../../../assets/imgs/menu/logout.png');
 
 class Menu extends Component {
   constructor(props) {
@@ -132,16 +135,16 @@ class Menu extends Component {
     const {currentLanguage} = this.props;
     
     let menuItems = [
-        {title: language.m_home[currentLanguage], icon: i_language},
+        {title: language.m_home[currentLanguage], icon: i_home},
         {title: language.m_about_us[currentLanguage], icon: i_about_us},
-        {title: language.m_mission_vission[currentLanguage], icon: i_international},
+        {title: language.m_mission_vission[currentLanguage], icon: i_mission},
         {title: language.m_claims[currentLanguage], icon: i_claims},
         {title: language.m_borard[currentLanguage], icon: i_board},
         {title: language.m_members[currentLanguage], icon: i_members},
         {title: language.m_international[currentLanguage], icon: i_international},
         {title: language.m_contact_us[currentLanguage], icon: i_contact_us},
         {title: language.m_language[currentLanguage], icon: i_language},
-        {title: language.m_logout[currentLanguage], icon: i_language},
+        {title: language.m_logout[currentLanguage], icon: i_logout},
     ];
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});

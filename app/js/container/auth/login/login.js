@@ -265,16 +265,16 @@ class Login extends Component {
                 activeOpacity={ .5 }
                 onPress={ (language) => this.onChangeLanguage('EN') }
               >
-                <Image source={ signup } style={ styles.switchENG } resizeMode="cover">
-                  <Text style={ styles.textButton }>ENG</Text>
+                <Image source={ currentLanguage == 'EN' ? login : signup } style={ styles.switchENG } resizeMode="cover">
+                  <Text style={ styles.textButton }>{currentLanguage == 'EN' ? 'EN' : 'العربية'}</Text>
                 </Image>
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={ .5 }
                 onPress={ (language) => this.onChangeLanguage('AR') }
               >
-                <Image source={ login } style={ styles.switchAR } resizeMode="cover">
-                  <Text style={ styles.textButton }>AR</Text>
+                <Image source={ currentLanguage == 'EN' ? signup : login } style={ styles.switchAR } resizeMode="cover">
+                  <Text style={ styles.textButton }>{currentLanguage == 'EN' ? 'AR' : 'اللغة'}</Text>
                 </Image>
               </TouchableOpacity>
             </View>

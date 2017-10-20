@@ -14,6 +14,8 @@ import {
   Keyboard,
   findNodeHandle,  
   Linking,
+  Platform,
+  BackHandler,    
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
@@ -32,10 +34,31 @@ const background = require('../../../assets/imgs/about_us/background.png');
 const address_back = require('../../../assets/imgs/contacts/address_field.png');
 const email_back = require('../../../assets/imgs/contacts/email_field.png');
 const socal_back = require('../../../assets/imgs/contacts/address_field.png');
+const facebook = require('../../../assets/imgs/social/facebook.png');
+const linkedin = require('../../../assets/imgs/social/linkedin.png');
+const twitter = require('../../../assets/imgs/social/twitter.png');
 
 class ContactUS extends Component {
   constructor(props) {
     super(props);
+    this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
+  }
+
+  componentWillMount() {
+    if (Platform.OS === "android") {
+      BackHandler.addEventListener("hardwareBackPress", this.handleBackButtonClick);
+    }
+  }
+
+  componentWillUnmount() {
+    if (Platform.OS === "android") {
+      BackHandler.removeEventListener("hardwareBackPress", this.handleBackButtonClick);
+    }
+  }
+
+  handleBackButtonClick() {
+    Actions.Main();
+    return true;
   }
 
   onSocial(index) {
@@ -89,19 +112,19 @@ class ContactUS extends Component {
                         activeOpacity={ .5 }
                         onPress={ () => this.onSocial(0) }
                       >
-                        <Text style={[styles.subTitle_ar, styles.social]}>FACEBOOK</Text>
+                        <Image source={ facebook } style={ styles.social } resizeMode="contain" />
                       </TouchableOpacity>
                       <TouchableOpacity
                         activeOpacity={ .5 }
                         onPress={ () => this.onSocial(1) }
                       >
-                        <Text style={[styles.subTitle_ar, styles.social]}>TWITTER</Text>
+                        <Image source={ twitter } style={ styles.social } resizeMode="contain" />
                       </TouchableOpacity>
                       <TouchableOpacity
                         activeOpacity={ .5 }
                         onPress={ () => this.onSocial(2) }
                       >
-                        <Text style={[styles.subTitle_ar, styles.social]}>LINKEDIN</Text>
+                        <Image source={ linkedin } style={ styles.social } resizeMode="contain" />
                       </TouchableOpacity>                    
                     </View>
                   </View>
@@ -137,9 +160,24 @@ class ContactUS extends Component {
                 <View style={styles.titleContainer}>
                   <Text style={[styles.title_ar, styles.titleSocial]}>اجتماعي</Text>
                   <View style={styles.socialContainer}>
-                    <Text style={[styles.subTitle_ar, styles.social]}>FACEBOOK</Text>
-                    <Text style={[styles.subTitle_ar, styles.social]}>TWITTER</Text>
-                    <Text style={[styles.subTitle_ar, styles.social]}>LINKEDIN</Text>
+                    <TouchableOpacity
+                      activeOpacity={ .5 }
+                      onPress={ () => this.onSocial(0) }
+                    >
+                      <Image source={ facebook } style={ styles.social } resizeMode="contain" />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      activeOpacity={ .5 }
+                      onPress={ () => this.onSocial(1) }
+                    >
+                      <Image source={ twitter } style={ styles.social } resizeMode="contain" />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      activeOpacity={ .5 }
+                      onPress={ () => this.onSocial(2) }
+                    >
+                      <Image source={ linkedin } style={ styles.social } resizeMode="contain" />
+                    </TouchableOpacity>
                   </View>
                 </View>
               </Image>
@@ -163,9 +201,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    height: screenHeight - navBarHeight,
     width: screenWidth,
-    padding: 30,
+    paddingHorizontal: 30,
   },
   subContainer: {
     width: "100%",
@@ -223,9 +260,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 10,
+    width: screenWidth * 0.6,
   },
   social: {
-    marginHorizontal: 5,
+    width: 30,
+    height: 30,
   }
 });
 

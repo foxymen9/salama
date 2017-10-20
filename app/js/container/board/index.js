@@ -12,7 +12,9 @@ import {
   TouchableOpacity,
   Alert,
   Keyboard,
-  findNodeHandle,  
+  findNodeHandle,
+  Platform,
+  BackHandler, 
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
@@ -39,9 +41,24 @@ const board7 = require('../../../assets/imgs/board/7.png');
 class Board extends Component {
   constructor(props) {
     super(props);
+    this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
   }
 
-  onLearnMore() {
+  componentWillMount() {
+    if (Platform.OS === "android") {
+      BackHandler.addEventListener("hardwareBackPress", this.handleBackButtonClick);
+    }
+  }
+
+  componentWillUnmount() {
+    if (Platform.OS === "android") {
+      BackHandler.removeEventListener("hardwareBackPress", this.handleBackButtonClick);
+    }
+  }
+
+  handleBackButtonClick() {
+    Actions.Main();
+    return true;
   }
 
   render() {
