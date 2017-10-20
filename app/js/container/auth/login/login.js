@@ -153,134 +153,134 @@ class Login extends Component {
           style={styles.video}
         />
         <View style={styles.scrollContainer}>
-        <KeyboardAwareScrollView>
-          <View style={styles.scrollSubContainer}>
-            <View style={ styles.descriptionContainer }>
-              <Image source={ logo } style={ styles.logo } resizeMode="contain"/>
-            </View>
-            <View style= { styles.inputContainer }>
-              <Image source={ currentLanguage == "EN" ? username : username_ar } style={ styles.buttonLogin } resizeMode="contain">
-                <TextInput
-                  ref="username"
-                  autoCapitalize="none"
-                  autoCorrect={ false }
-                  placeholder={language.username[currentLanguage]}
-                  placeholderTextColor={ commonColors.placeholderText }
-                  textAlign={currentLanguage=="EN" ? "left" : "right" }
-                  style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
-                  underlineColorAndroid="transparent"
-                  returnKeyType={ 'next' }
-                  value={ this.state.username }
-                  onChangeText={ (text) => this.setState({ username: text }) }
-                  onSubmitEditing={ () => this.refs.password.focus() }
-                />
-              </Image>
-              <Image source={ currentLanguage == "EN" ? password : password_ar } style={ styles.buttonLogin } resizeMode="contain">
-                <TextInput
-                  ref="password"
-                  autoCapitalize="none"
-                  autoCorrect={ false }
-                  placeholder={language.password[currentLanguage]}
-                  secureTextEntry={ this.state.bShowConfirmPassword }
-                  placeholderTextColor={ commonColors.placeholderText }
-                  textAlign={currentLanguage=="EN" ? "left" : "right" }
-                  style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
-                  underlineColorAndroid="transparent"
-                  returnKeyType={ 'go' }
-                  value={ this.state.password }
-                  onChangeText={ (text) => this.setState({ password: text }) }
-                  onSubmitEditing={ () => this.onLogin() }
-                />
-              </Image>
-            </View>
-            {currentLanguage == "EN" ?
-            <View style={ styles.ForgotPasswordContainer }>
-              <CheckBox 
+          <KeyboardAwareScrollView>
+            <View style={styles.scrollSubContainer}>
+              <View style={ styles.descriptionContainer }>
+                <Image source={ logo } style={ styles.logo } resizeMode="contain"/>
+              </View>
+              <View style= { styles.inputContainer }>
+                <Image source={ currentLanguage == "EN" ? username : username_ar } style={ styles.imgInput } resizeMode="contain">
+                  <TextInput
+                    ref="username"
+                    autoCapitalize="none"
+                    autoCorrect={ false }
+                    placeholder={language.username[currentLanguage]}
+                    placeholderTextColor={ commonColors.placeholderText }
+                    textAlign={currentLanguage=="EN" ? "left" : "right" }
+                    style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
+                    underlineColorAndroid="transparent"
+                    returnKeyType={ 'next' }
+                    value={ this.state.username }
+                    onChangeText={ (text) => this.setState({ username: text }) }
+                    onSubmitEditing={ () => this.refs.password.focus() }
+                  />
+                </Image>
+                <Image source={ currentLanguage == "EN" ? password : password_ar } style={ styles.imgInput } resizeMode="contain">
+                  <TextInput
+                    ref="password"
+                    autoCapitalize="none"
+                    autoCorrect={ false }
+                    placeholder={language.password[currentLanguage]}
+                    secureTextEntry={ this.state.bShowConfirmPassword }
+                    placeholderTextColor={ commonColors.placeholderText }
+                    textAlign={currentLanguage=="EN" ? "left" : "right" }
+                    style={ currentLanguage == "EN" ? styles.input  : styles.input_ar }
+                    underlineColorAndroid="transparent"
+                    returnKeyType={ 'go' }
+                    value={ this.state.password }
+                    onChangeText={ (text) => this.setState({ password: text }) }
+                    onSubmitEditing={ () => this.onLogin() }
+                  />
+                </Image>
+              </View>
+              {currentLanguage == "EN" ?
+              <View style={ styles.ForgotPasswordContainer }>
+                <CheckBox 
+                    style={{flex: 1}}
+                    rightTextStyle={{fontSize: 12}}
+                    onClick={ ()=>this.onRememberMe() } 
+                    isChecked={ this.state.rememberMe } 
+                    rightText={language.rememberMe[currentLanguage]}
+                  />
+                <TouchableOpacity
+                  activeOpacity={ .5 }
+                  onPress={ () => this.onForgotPassword() }
+                >
+                  <Text style={ styles.textForgotPassword }>{language.forgotPassword[currentLanguage]}</Text>
+                </TouchableOpacity>
+              </View>
+              :
+              <View style={ styles.ForgotPasswordContainer }>
+                <TouchableOpacity
+                  activeOpacity={ .5 }
+                  onPress={ () => this.onForgotPassword() }
+                >
+                  <Text style={ styles.textForgotPassword }>{language.forgotPassword[currentLanguage]}</Text>
+                </TouchableOpacity>
+                <CheckBox 
                   style={{flex: 1}}
-                  rightTextStyle={{fontSize: 12}}
+                  rightTextStyle={{fontSize: 12, paddingRight: 10}}
                   onClick={ ()=>this.onRememberMe() } 
                   isChecked={ this.state.rememberMe } 
-                  rightText={language.rememberMe[currentLanguage]}
+                  leftText={language.rememberMe[currentLanguage]}
                 />
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                onPress={ () => this.onForgotPassword() }
-              >
-                <Text style={ styles.textForgotPassword }>{language.forgotPassword[currentLanguage]}</Text>
-              </TouchableOpacity>
-            </View>
-            :
-            <View style={ styles.ForgotPasswordContainer }>
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                onPress={ () => this.onForgotPassword() }
-              >
-                <Text style={ styles.textForgotPassword }>{language.forgotPassword[currentLanguage]}</Text>
-              </TouchableOpacity>
-              <CheckBox 
-                style={{flex: 1}}
-                rightTextStyle={{fontSize: 12, paddingRight: 10}}
-                onClick={ ()=>this.onRememberMe() } 
-                isChecked={ this.state.rememberMe } 
-                leftText={language.rememberMe[currentLanguage]}
-              />
-            </View>
-            }
-            <View style={ styles.loginButtonWrapper }> 
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                onPress={ () => this.onLogin() }
-              >
-                <Image source={ login } style={ styles.buttonLogin } resizeMode="contain">
-                  <Text style={ styles.textButton }>{language.login[currentLanguage]}</Text>
-                </Image>
-              </TouchableOpacity>
+              </View>
+              }
+              <View style={ styles.loginButtonWrapper }> 
+                <TouchableOpacity
+                  activeOpacity={ .5 }
+                  onPress={ () => this.onLogin() }
+                >
+                  <Image source={ login } style={ styles.buttonLogin } resizeMode="contain">
+                    <Text style={ styles.textButton }>{language.login[currentLanguage]}</Text>
+                  </Image>
+                </TouchableOpacity>
 
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                onPress={ () => this.onSignUp() }
-              >
-                <Image source={ signup } style={ styles.buttonLogin } resizeMode="contain">
-                  <Text style={ styles.textButton }>{language.signup[currentLanguage]}</Text>
-                </Image>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={ .5 }
+                  onPress={ () => this.onSignUp() }
+                >
+                  <Image source={ signup } style={ styles.buttonLogin } resizeMode="contain">
+                    <Text style={ styles.textButton }>{language.signup[currentLanguage]}</Text>
+                  </Image>
+                </TouchableOpacity>
+              </View>
+              <View style={ styles.skipContainer }>
+                <TouchableOpacity
+                  activeOpacity={ .5 }
+                  onPress={ () => this.onSkip() }
+                >
+                  {currentLanguage == "EN" ?
+                  <View style={ styles.skipWrapper}>
+                    <Text style={ styles.textButton }>{language.skip[currentLanguage]}</Text>
+                    <Image source={ arrow } style={ styles.skipArrow } resizeMode="cover" />
+                  </View>
+                  : <View style={ styles.skipWrapper}>
+                    <Image source={ arrow_ar } style={ styles.skipArrow_ar } resizeMode="cover" />
+                    <Text style={ styles.textButton }>{language.skip[currentLanguage]}</Text>
+                  </View>}
+                </TouchableOpacity>
+              </View>
+              <View style={ styles.switchContainer }>
+                <TouchableOpacity
+                  activeOpacity={ .5 }
+                  onPress={ (language) => this.onChangeLanguage('EN') }
+                >
+                  <Image source={ currentLanguage == 'EN' ? login : signup } style={ styles.switchENG } resizeMode="cover">
+                    <Text style={ styles.textButton }>{currentLanguage == 'EN' ? 'EN' : 'العربية'}</Text>
+                  </Image>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={ .5 }
+                  onPress={ (language) => this.onChangeLanguage('AR') }
+                >
+                  <Image source={ currentLanguage == 'EN' ? signup : login } style={ styles.switchAR } resizeMode="cover">
+                    <Text style={ styles.textButton }>{currentLanguage == 'EN' ? 'AR' : 'اللغة'}</Text>
+                  </Image>
+                </TouchableOpacity>
+              </View>
             </View>
-            <View style={ styles.skipContainer }>
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                onPress={ () => this.onSkip() }
-              >
-                {currentLanguage == "EN" ?
-                <View style={ styles.skipWrapper}>
-                  <Text style={ styles.textButton }>{language.skip[currentLanguage]}</Text>
-                  <Image source={ arrow } style={ styles.skipArrow } resizeMode="cover" />
-                </View>
-                : <View style={ styles.skipWrapper}>
-                  <Image source={ arrow_ar } style={ styles.skipArrow_ar } resizeMode="cover" />
-                  <Text style={ styles.textButton }>{language.skip[currentLanguage]}</Text>
-                </View>}
-              </TouchableOpacity>
-            </View>
-            <View style={ styles.switchContainer }>
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                onPress={ (language) => this.onChangeLanguage('EN') }
-              >
-                <Image source={ currentLanguage == 'EN' ? login : signup } style={ styles.switchENG } resizeMode="cover">
-                  <Text style={ styles.textButton }>{currentLanguage == 'EN' ? 'EN' : 'العربية'}</Text>
-                </Image>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={ .5 }
-                onPress={ (language) => this.onChangeLanguage('AR') }
-              >
-                <Image source={ currentLanguage == 'EN' ? signup : login } style={ styles.switchAR } resizeMode="cover">
-                  <Text style={ styles.textButton }>{currentLanguage == 'EN' ? 'AR' : 'اللغة'}</Text>
-                </Image>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </KeyboardAwareScrollView>
+          </KeyboardAwareScrollView>
         </View>
         <View style={ styles.bottomContainer }>
           <TouchableOpacity
@@ -312,10 +312,11 @@ const styles = StyleSheet.create({
   },
 
   scrollContainer: {
-    height: screenHeight - 40,
+    flex: 1,
   },
   scrollSubContainer: {
-    justifyContent: 'space-between',
+    height: screenHeight - 80,
+    justifyContent: 'center',
   },
 
   descriptionContainer: {
@@ -329,21 +330,28 @@ const styles = StyleSheet.create({
 
   inputContainer: {
     width: screenWidth,
-    paddingHorizontal: screenWidth * 0.1,
+    // paddingHorizontal: screenWidth * 0.1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  imgInput: {
+    width: screenWidth * 0.8,
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 15,
   },
   input: {
     fontSize: 12,
     color: commonColors.title,
-    height: 45,
+    height: 35,
     alignSelf: 'stretch',
     marginLeft: 40,
   },
   input_ar: {
     fontSize: 12,
     color: commonColors.title,
-    height: 45,
+    height: 35,
     alignSelf: 'stretch',
     marginRight: 40,
   },
@@ -380,16 +388,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: screenWidth * 0.1,
   },
   buttonLogin: {
+    width: screenWidth * 0.8,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 15,
+    marginBottom: 15,
   },
 
   skipContainer: {
     width: screenWidth,
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 20,
+    marginBottom: 20,
   },
   skipWrapper: {
     flexDirection: 'row',
@@ -409,7 +419,6 @@ const styles = StyleSheet.create({
   switchContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'flex-start',
   },
   switchENG: {
     width: screenWidth * 0.15,
