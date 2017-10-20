@@ -20,7 +20,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
-import CheckBox from 'react-native-checkbox-heaven';
+// import CheckBox from 'react-native-checkbox-heaven';
+import CheckBox from 'react-native-check-box'
 import Spinner from 'react-native-loading-spinner-overlay';
 import OrientationLoadingOveraly from 'react-native-orientation-loading-overlay';
 import Video from 'react-native-video';
@@ -193,14 +194,12 @@ class Login extends Component {
               {currentLanguage == "EN" ?
               <View style={ styles.textWrapper }>
                 <CheckBox 
-                  style={ styles.checkboxRememberMe } 
-                  onChange={ ()=>this.onRememberMe() } 
-                  checked={ this.state.rememberMe } 
-                  label={language.rememberMe[currentLanguage]}
-                  labelStyle={ styles.textRememberMe } 
-                  iconSize={20}
-                  iconName="matMix"
-                />
+                    style={{flex: 1}}
+                    rightTextStyle={{fontSize: 12}}
+                    onClick={ ()=>this.onRememberMe() } 
+                    isChecked={ this.state.rememberMe } 
+                    rightText={language.rememberMe[currentLanguage]}
+                  />
                 <TouchableOpacity
                   activeOpacity={ .5 }
                   onPress={ () => this.onForgotPassword() }
@@ -216,22 +215,13 @@ class Login extends Component {
                 >
                   <Text style={ styles.textForgotPassword }>{language.forgotPassword[currentLanguage]}</Text>
                 </TouchableOpacity>
-                <View style={ styles.rememberWrapper }>
-                  <TouchableOpacity
-                    activeOpacity={ .5 }
-                    onPress={ ()=>this.onRememberMe() } 
-                  >
-                    <Text style={ styles.textForgotPasswordAr }>{language.rememberMe[currentLanguage]}</Text>
-                  </TouchableOpacity>
-                  <CheckBox 
-                    style={ styles.checkboxRememberMe } 
-                    onChange={ ()=>this.onRememberMe() } 
-                    checked={ this.state.rememberMe } 
-                    labelStyle={ styles.textRememberMe } 
-                    iconSize={20}
-                    iconName="matMix"
-                  />
-                </View>
+                <CheckBox 
+                  style={{flex: 1}}
+                  rightTextStyle={{fontSize: 12, paddingRight: 10}}
+                  onClick={ ()=>this.onRememberMe() } 
+                  isChecked={ this.state.rememberMe } 
+                  leftText={language.rememberMe[currentLanguage]}
+                />
               </View>
               }
               <TouchableOpacity
@@ -365,24 +355,13 @@ const styles = StyleSheet.create({
     height: 40,
     width: screenWidth * 0.8,
   },
-  rememberWrapper: {
-    flexDirection: 'row',
-  },
-  checkboxRememberMe: {
-    backgroundColor: 'transparent',
-  },
-  textRememberMe: {
-    color: commonColors.placeholderText,
-    fontSize: 12,
-    marginLeft: 10,
-  },
   textForgotPasswordAr: {
     color: commonColors.placeholderText,
     fontSize: 12,
     fontStyle: 'italic',
     backgroundColor: 'transparent',
     textAlign: 'right',
-    marginTop: 3,
+    marginTop: 5,
     marginRight: 10,
   },
   textForgotPassword: {
@@ -391,7 +370,7 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     backgroundColor: 'transparent',
     textAlign: 'right',
-    marginTop: 3,
+    marginTop: 5,
   },
   skipContainer: {
     marginTop: 50,

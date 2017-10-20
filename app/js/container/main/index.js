@@ -35,6 +35,7 @@ class Main extends Component {
   }
 
   onLearnMore() {
+    Actions.Claim({title: 'm_claims'});
   }
 
   render() {

@@ -54,7 +54,6 @@ class Menu extends Component {
 
   onItemSelect(data, rowID) {
     const {currentLanguage, menuId } = this.props;
-
     if (rowID == menuId) {
       //Hide menu when select the current page
       this.props.menuState();
@@ -62,38 +61,44 @@ class Menu extends Component {
     }
     
     switch (rowID) {
-      case "0": //ABOUT US
+      case "0": //Log out
+        Actions.Main();
+        return;
+      case "1": //ABOUT US
         this.props.changeMenuState(rowID);
         Actions.AboutUS({title: 'm_about_us'});
         return;
-      case "1": //MISSION & VISSION
+      case "2": //MISSION & VISSION
         this.props.changeMenuState(rowID);
         Actions.MissionVission({title: 'm_mission_vission'});
         return;
-      case "2": //CLAIMS
+      case "3": //CLAIMS
       this.props.changeMenuState(rowID);
         Actions.Claim({title: 'm_claims'});
         return;
-      case "3": //BOARD OF DIRECTORS
+      case "4": //BOARD OF DIRECTORS
         this.props.changeMenuState(rowID);
         Actions.Board({title: 'm_borard'});
         return;
-      case "4": //MEMBERS
+      case "5": //MEMBERS
         this.props.changeMenuState(rowID);
         Actions.Member({title: 'm_members'});
         return;
-      case "5": //INTERNATIONAL WORK
+      case "6": //INTERNATIONAL WORK
         this.props.changeMenuState(rowID);
         Actions.International({title: 'm_international'});
         return;
-      case "6": //CONTACT US
+      case "7": //CONTACT US
         this.props.changeMenuState(rowID);
         Actions.ContactUS({title: 'm_contact_us'});
         return;
-      case "7": //Language
+      case "8": //Language
         this.props.menuState();
         const lang = currentLanguage == 'EN' ? 'AR' : 'EN';
         this.props.changeLanguage(lang);
+        return;
+      case "9": //Log out
+        Actions.Login();
         return;
       default:
         return;
@@ -127,6 +132,7 @@ class Menu extends Component {
     const {currentLanguage} = this.props;
     
     let menuItems = [
+        {title: language.m_home[currentLanguage], icon: i_language},
         {title: language.m_about_us[currentLanguage], icon: i_about_us},
         {title: language.m_mission_vission[currentLanguage], icon: i_international},
         {title: language.m_claims[currentLanguage], icon: i_claims},
@@ -135,6 +141,7 @@ class Menu extends Component {
         {title: language.m_international[currentLanguage], icon: i_international},
         {title: language.m_contact_us[currentLanguage], icon: i_contact_us},
         {title: language.m_language[currentLanguage], icon: i_language},
+        {title: language.m_logout[currentLanguage], icon: i_language},
     ];
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});

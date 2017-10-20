@@ -28,5 +28,7 @@ const language = {
     "m_international": {"EN": "INTERNATIONAL WORK", "AR": "الشبكة العالمية"},
     "m_language": {"EN": "Language : العربية", "AR": "اللغة : EN"},
     "m_contact_us": {"EN": "CONTACT US", "AR": "إتصل بنا"},
+    "m_home": {"EN": "HOME", "AR": "HOME"},
+    "m_logout": {"EN": "LOG OUT", "AR": "LOG OUT"},
 };
 export default language;

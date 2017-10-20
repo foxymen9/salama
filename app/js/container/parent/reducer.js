@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 
 const initialState = {
-  data: 100,
+  data: 0,
 };
 
 export default function parent(state = initialState, action = {}) {
