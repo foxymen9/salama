@@ -151,7 +151,7 @@ class Login extends Component {
           repeat
           style={styles.video}
         />
-        <KeyboardAwareScrollView>
+        
           <View style={ styles.container } >
             <View style={ styles.descriptionContainer }>
               <Image source={ logo } style={ styles.logo } resizeMode="center"/>
@@ -299,7 +299,6 @@ class Login extends Component {
               </Image>
             </TouchableOpacity>
           </View>
-        </KeyboardAwareScrollView>
       </View>
     );
   }
@@ -321,7 +320,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingVertical: 20,
   },
   logo: {
     width: screenWidth * 0.5,
