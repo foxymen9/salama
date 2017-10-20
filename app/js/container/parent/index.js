@@ -53,7 +53,7 @@ class Parent extends Component {
             isOpen={isMenuOpen}
             onChange={(isOpen)=>this.onSideMenuChange(isOpen)}
             menuPosition="right"
-            openMenuOffset={280}
+            openMenuOffset={270}
             menu={menuComponent}
           >
             <View style={ styles.container } >

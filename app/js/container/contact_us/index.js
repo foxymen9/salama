@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     width: "100%",
-    height: 180,
+    height: 200,
   },
   subbackground: {
     width: '100%',
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     marginTop: 80,
     display: 'flex',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   title: {
     backgroundColor: 'transparent',

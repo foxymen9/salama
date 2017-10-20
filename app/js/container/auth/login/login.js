@@ -23,7 +23,6 @@ import { Actions } from 'react-native-router-flux';
 import CheckBox from 'react-native-checkbox-heaven';
 import Spinner from 'react-native-loading-spinner-overlay';
 import OrientationLoadingOveraly from 'react-native-orientation-loading-overlay';
-import timer from 'react-native-timer';
 import Video from 'react-native-video';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as commonColors from '../../../styles/commonColors';
@@ -322,7 +321,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 20,
+    paddingHorizontal: 20,
   },
   logo: {
     width: screenWidth * 0.5,
@@ -330,6 +329,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flex: 1,
+    marginTop: 40,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -395,7 +395,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
   skipContainer: {
-    marginTop: 40,
+    marginTop: 50,
   },
   skipWrapper: {
     display: 'flex',

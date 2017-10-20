@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    width: 280,
+    width: 270,
     height: screenHeight,
   },
   listView: {

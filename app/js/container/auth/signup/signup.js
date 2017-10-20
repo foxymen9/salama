@@ -20,7 +20,6 @@ import { Actions } from 'react-native-router-flux';
 
 import OrientationLoadingOveraly from 'react-native-orientation-loading-overlay';
 
-import timer from 'react-native-timer';
 import Video from 'react-native-video';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as commonColors from '../../../styles/commonColors';
@@ -487,6 +486,7 @@ const styles = StyleSheet.create({
   },
   signupButtonContainer: {
     alignItems: 'center',
+    marginBottom: 50,
   },
   btnSignup: {
     justifyContent: 'center',

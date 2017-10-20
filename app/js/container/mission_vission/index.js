@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
   subbackground: {
     width: screenWidth,
-    height: 250
+    height: screenHeight * 0.35,
   },
   subContainer: {
     flex: 1,

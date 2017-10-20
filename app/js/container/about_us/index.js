@@ -48,7 +48,7 @@ class AboutUS extends Component {
           <KeyboardAwareScrollView>
             {currentLanguage == 'EN' ?
             <View style={ styles.subContainer }>
-              <View style={styles.content}>
+              <View>
                 <Text style={styles.subTitle} >
                   Salama Cooperative Insurance Co. “SALAMA”, formerly known as Islamic Arab Insurance Co. 
                   “IAIC”, is a part of SALAMA International Group which is a major player in the MENA region and is backed with SR. 2 Billions Paid Capital.
@@ -136,12 +136,12 @@ const styles = StyleSheet.create({
   },
   subbackground: {
     width: screenWidth,
-    height: 250,
+    height: screenHeight * 0.35,
   },
   subContainer: {
     flex: 1,
     width: screenWidth,
-    paddingHorizontal: 20,
+    padding: 20,
   },
   content: {
     marginTop: 15,
