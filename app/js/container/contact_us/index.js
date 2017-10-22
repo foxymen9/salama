@@ -64,10 +64,13 @@ class ContactUS extends Component {
   onSocial(index) {
     switch (index) {
       case 0:
+        Linking.openURL("https://www.facebook.com/salamainsurance");
         return;
       case 1:
+        Linking.openURL("https://www.twitter.com/salamaco");
         return;
       case 2:
+        Linking.openURL("https://www.linkedin.com/company-beta/694079");
         return;
       default: 
         return;
@@ -221,17 +224,17 @@ const styles = StyleSheet.create({
   },
   title: {
     backgroundColor: 'transparent',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'left',
-    marginBottom: 5,
+    marginVertical: 5,
   },
   title_ar: {
     backgroundColor: 'transparent',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'right',
-    marginBottom: 5,
+    marginVertical: 5,
   },
   titleAddress: {
     color: '#0D5D66',
@@ -244,13 +247,13 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     backgroundColor: 'transparent',
-    fontSize: 14,
+    fontSize: 12,
     color: '#333',
     textAlign: 'center',
   },
   subTitle_ar: {
     backgroundColor: 'transparent',
-    fontSize: 14,
+    fontSize: 12,
     color: '#333',
     textAlign: 'center',
   },

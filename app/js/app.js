@@ -40,9 +40,9 @@ export default class App extends Component {
   render() {
     const scenes = Actions.create(
       <Scene key="root">
-        <Scene key="Login" component={ Login } hideNavBar={ true } panHandlers={null} initial={ true }  />
+        <Scene key="Login" component={ Login } hideNavBar={ true } panHandlers={null} initial={ false }  />
         <Scene key="Signup" component={ Signup }  hideNavBar={ true } panHandlers={null} initial={ false } />
-        <Scene key="Main" component={ Main }  hideNavBar={ true } panHandlers={null} />
+        <Scene key="Main" component={ Main }  hideNavBar={ true } panHandlers={null} initial={ true }  />
         <Scene key="AboutUS" component={ AboutUS }  hideNavBar={ true } panHandlers={null}/>
         <Scene key="MissionVission" component={ MissionVission } hideNavBar={ true } panHandlers={null}/>
         <Scene key="Claim" component={ Claim } hideNavBar={ true } panHandlers={null}/>

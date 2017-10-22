@@ -64,7 +64,8 @@ class Menu extends Component {
     }
     
     switch (rowID) {
-      case "0": //Log out
+      case "0": //Home
+      this.props.changeMenuState(rowID);
         Actions.Main();
         return;
       case "1": //ABOUT US

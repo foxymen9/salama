@@ -50,13 +50,12 @@ class Main extends Component {
   }
 
   handleBackButtonClick() {
-    Actions.Login();
     Actions.Main();
     return true;
   }
 
   onLearnMore() {
-    Actions.Claim({title: 'm_claims'});
+    Actions.AboutUS({title: 'm_about_us'});
   }
 
   render() {
