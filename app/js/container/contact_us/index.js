@@ -161,7 +161,7 @@ class ContactUS extends Component {
             <View style={ styles.subContainer }>
               <Image source={ address_back } style={ styles.subbackground } resizeMode="contain" >
                 <View style={styles.titleContainer}>
-                  <Text style={[styles.title_ar, styles.titleSocial]}>اجتماعي</Text>
+                  <Text style={[styles.title_ar, styles.titleSocial]}>الشبكة الإجتماعية</Text>
                   <View style={styles.socialContainer}>
                     <TouchableOpacity
                       activeOpacity={ .5 }
