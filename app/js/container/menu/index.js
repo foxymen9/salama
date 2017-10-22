@@ -100,8 +100,14 @@ class Menu extends Component {
         const lang = currentLanguage == 'EN' ? 'AR' : 'EN';
         this.props.changeLanguage(lang);
         return;
-      case "9": //Log out
-        Actions.Login();
+      case "9": //Signin
+        this.props.changeMenuState(rowID);
+        Actions.Login({title: 'login'});
+        // Linking.openURL("https://www.salama.com.sa/Account/Login");
+        return;
+      case "10": //Signup
+        this.props.changeMenuState(rowID);
+        Actions.Signup({title: 'signup'});
         return;
       default:
         return;
@@ -144,7 +150,8 @@ class Menu extends Component {
         {title: language.m_international[currentLanguage], icon: i_international},
         {title: language.m_contact_us[currentLanguage], icon: i_contact_us},
         {title: language.m_language[currentLanguage], icon: i_language},
-        {title: language.m_logout[currentLanguage], icon: i_logout},
+        {title: language.login[currentLanguage], icon: i_logout},
+        {title: language.signup[currentLanguage], icon: i_logout},
     ];
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});

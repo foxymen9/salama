@@ -51,6 +51,7 @@ class Main extends Component {
 
   handleBackButtonClick() {
     Actions.Login();
+    Actions.Main();
     return true;
   }
 
