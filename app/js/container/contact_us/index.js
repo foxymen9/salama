@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
   socialContainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
     marginTop: 10,
     width: screenWidth * 0.6,

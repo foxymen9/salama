@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   subContainer: {
-    paddingBottom: 80,
+    paddingBottom: 50,
   },
   title: {
     backgroundColor: 'transparent',

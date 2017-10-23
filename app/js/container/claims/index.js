@@ -122,7 +122,7 @@ class Claims extends Component {
             <View style={ styles.subContainer }>
               <Image source={ motor } style={ styles.subbackground } />
               <View style={styles.content}>
-                <Text style={styles.title_ar} >MOTOR CLAIM</Text>
+                <Text style={styles.title_ar} >تأمين المركبات</Text>
                 <Text style={styles.subTitle_ar} >
                   Salama Cooperative Insurance Company - is a leading provider of Sharia’h compliant insurance solutions (Takaful).
                 </Text>
@@ -131,7 +131,7 @@ class Claims extends Component {
             <View style={ styles.subContainer }>
               <Image source={ medical } style={ styles.subbackground } />
               <View style={styles.content}>
-                <Text style={styles.title_ar} >MEDICAL CLAIM</Text>
+                <Text style={styles.title_ar} >التأمين الطبي</Text>
                 <Text style={styles.subTitle_ar} >
                   SALAMA offers comprehensive health insurance coverage that complies with Council of Cooperative Health Insurance (CCHI) requirements. 
                   This service is offered through a network of approved healthcare providers who have high standard.
@@ -142,7 +142,7 @@ class Claims extends Component {
             <View style={ styles.subContainer }>
               <Image source={ general } style={ styles.subbackground } />
               <View style={styles.content}>
-                <Text style={styles.title_ar} >GENERAL CLAIM</Text>
+                <Text style={styles.title_ar} >التأمين العام</Text>
                 <Text style={styles.subTitle_ar} >
                   SALAMA is a leading provider of Sharia compliant General Insurance Products with a portfolio of more than 25 Property & Casualty Products.
                 </Text>
@@ -151,7 +151,7 @@ class Claims extends Component {
             <View style={ styles.subContainer }>
               <Image source={ travel } style={ styles.subbackground } />
               <View style={styles.content}>
-                <Text style={styles.title_ar} >TRAVEL CLAIM</Text>
+                <Text style={styles.title_ar} >تأمين السفر</Text>
                 <Text style={styles.subTitle_ar} >
                   SALAMA Travel Care Insurance provides comprehensive travel insurance coverage to our valued corporate and individual clients on their overseas trips.
                 </Text>
@@ -160,7 +160,7 @@ class Claims extends Component {
             <View style={ styles.subContainer }>
               <Image source={ malpractise } style={ styles.subbackground } />
               <View style={styles.content}>
-                <Text style={styles.title_ar} >MALPRACTICE CLAIM:</Text>
+                <Text style={styles.title_ar} >تأمين أخطاء المهن الطبية</Text>
                 <Text style={styles.subTitle_ar} >
                   SALAMA offers Comprehensive Malpractice Insurance coverage. Malpractice insurance is mandatory in the kingdom of Saudi Arabia for all registered health practitioners, including (but limited to) physicians, dentists, nurses, therapists, optometrists, emergency medical technicians, surgical and non-surgical paramedical staff, as well as veterinarians.
                 </Text>

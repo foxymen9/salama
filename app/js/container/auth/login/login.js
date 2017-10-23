@@ -64,8 +64,6 @@ class Login extends Component {
           domStorageEnabled={true}
           decelerationRate="normal"
           javaScriptEnabledAndroid={true}
-          scalesPageToFit={false}
-          bounces={false}
           startInLoadingState={true}
         />
       </Parent>
