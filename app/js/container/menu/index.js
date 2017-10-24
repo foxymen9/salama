@@ -39,6 +39,8 @@ const i_contact_us = require('../../../assets/imgs/menu/phone.png');
 const i_home = require('../../../assets/imgs/menu/home.png');
 const i_mission = require('../../../assets/imgs/menu/vision.png');
 const i_logout = require('../../../assets/imgs/menu/logout.png');
+const i_login = require('../../../assets/imgs/menu/login.png');
+const i_signup = require('../../../assets/imgs/menu/signup.png');
 
 class Menu extends Component {
   constructor(props) {
@@ -151,8 +153,8 @@ class Menu extends Component {
         {title: language.m_international[currentLanguage], icon: i_international},
         {title: language.m_contact_us[currentLanguage], icon: i_contact_us},
         {title: language.m_language[currentLanguage], icon: i_language},
-        {title: language.login[currentLanguage], icon: i_logout},
-        {title: language.signup[currentLanguage], icon: i_logout},
+        {title: language.login[currentLanguage], icon: i_login},
+        {title: language.signup[currentLanguage], icon: i_signup},
     ];
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
