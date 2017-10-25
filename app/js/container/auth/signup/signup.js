@@ -29,6 +29,7 @@ import language from '../../../utils/language/language';
 
 import Parent from '../../parent';
 
+import WebViewAndroid from 'react-native-webview-android';
 
 class Signup extends Component {
   constructor(props) {
@@ -58,8 +59,10 @@ class Signup extends Component {
 
     return (
       <Parent title={"signup"}>
+        {Platform.OS == 'ios' ?
         <WebView 
-          source={{url: 'http://192.168.0.91/salama/signup.html'}} style={styles.loginView} 
+          source={{url: 'https://www.salama.com.sa/Account/App/MRegister.aspx'}} 
+          style={styles.loginView} 
           javaScriptEnabled={true}
           domStorageEnabled={true}
           decelerationRate="normal"
@@ -67,6 +70,13 @@ class Signup extends Component {
           scalesPageToFit={true}
           startInLoadingState={true}
         />
+        :
+        <WebViewAndroid
+          style={styles.loginView} 
+          javaScriptEnabled={true}
+          startInLoadingState={true}
+          url={'https://www.salama.com.sa/Account/App/MRegister.aspx'} // or use the source(object) attribute...
+        />}
       </Parent>
     );
   }

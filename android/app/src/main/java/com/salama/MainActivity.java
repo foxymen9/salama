@@ -1,6 +1,7 @@
 package com.salama;
 
 import com.facebook.react.ReactActivity;
+import com.burnweb.rnwebview.RNWebViewPackage;
 
 public class MainActivity extends ReactActivity {
 
